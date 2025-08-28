@@ -50,7 +50,7 @@ export default function Home() {
           </span>
           <div className="w-[218px] h-[81px] flex-none order-2">
             <p className="text-[#d7ffb3] text-[18px] leading-[148%]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
-              We'd love to hear from you! Whether you have questions, feedback.
+              We&apos;d love to hear from you! Whether you have questions, feedback.
             </p>
           </div>
           <span className="w-[953px] h-[207px] text-white text-[155px] leading-[207px] flex-none order-3" style={{ fontFamily: 'var(--font-playfair-display)', fontWeight: 400 }}>
