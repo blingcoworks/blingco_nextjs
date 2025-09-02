@@ -2,11 +2,11 @@ import { BlingcoGreen } from "../Blingco";
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative flex flex-col items-center gap-[20px] w-full max-w-[1280px] mx-auto min-h-[1371px] bg-black" style={{
+    <section id="contact" className="relative flex flex-col items-center gap-[20px] w-full mx-auto min-h-[1371px] bg-black" style={{
       padding: '0px'
     }}>
       {/* Featured product */}
-      <div className="flex flex-col justify-end items-center gap-[8px] w-[1280px] h-[800px]" style={{
+      <div className="relative w-full flex flex-col justify-end items-center gap-[8px] h-[800px]" style={{
         padding: '80px 145px',
         background: 'linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(/contact.png)',
         backgroundSize: 'cover',
@@ -30,7 +30,7 @@ export default function Contact() {
       </div>
 
       {/* Main */}
-      <div className="flex flex-row justify-center items-center w-[1280px] h-[550px] bg-black" style={{ padding: '40px 100px 120px' }}>
+      <div className="relative w-full flex flex-row justify-center items-center w-[1280px] h-[550px] bg-black" style={{ padding: '40px 100px 120px' }}>
         {/* Inner content */}
         <div className="flex flex-col items-center gap-[24px] w-[837px] max-w-[1200px] h-[377px] bg-[#727272] rounded-[24px]" style={{ padding: '50px 44px' }}>
           {/* Frame 2147238587 */}

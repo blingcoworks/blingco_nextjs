@@ -17,7 +17,7 @@ export function AboutFirst() {
   return (
     <section id="about" className="relative w-full bg-white">
       {/* Featured product */}
-      <div className="flex flex-col justify-end items-center gap-[8px] w-[1280px] h-[800px]" style={{
+      <div className="relative w-full flex flex-col justify-center items-center gap-[8px] w-[1280px] h-[800px]" style={{
         padding: '80px 145px',
         background: 'linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)), #333333'
       }}>
@@ -41,7 +41,7 @@ export function AboutFirst() {
       </div>
 
       {/* Stocklist section */}
-      <div className="flex flex-row justify-between items-start w-[1280px] h-[640px] bg-black" style={{ padding: '0px' }}>
+      <div className="relative w-full flex flex-row justify-between items-start w-[1280px] h-[640px] bg-black" style={{ padding: '0px' }}>
         {/* Text content */}
         <div className="flex flex-col justify-center items-start gap-[136px] w-[640px] h-[640px] bg-black flex-1" style={{ padding: '23px 50px' }}>
           {/* 크리에이터님, 혹시 이런 고민 있으셨나요? */}
@@ -179,7 +179,7 @@ export function AboutSecond() {
   return (
     <div>
       {/* Flavors section */}
-      <section className="flex flex-col justify-center items-start bg-black gap-[16px] w-[1280px] h-[373px]" style={{ padding: '30px 50px' }}>
+      <section className="relative w-full flex flex-col justify-center items-start bg-black gap-[16px] w-[1280px] h-[373px]" style={{ padding: '30px 50px' }}>
         <p className="text-[#95FF8D] text-[40px] leading-[100%] tracking-[0.01em]" style={{ fontFamily: 'var(--font-righteous)' }}>
           One and Only
         </p>
@@ -192,7 +192,7 @@ export function AboutSecond() {
       </section>
 
       {/* Product grid */}
-      <section className="flex flex-col items-center bg-black gap-[100px] w-[1280px] h-[1295px]" style={{ padding: '36px 50px' }}>
+      <section className="relative w-full flex flex-col items-center bg-black gap-[100px] w-[1280px] h-[1295px]" style={{ padding: '36px 50px' }}>
         {/* Products */}
         <div className="flex flex-row flex-wrap items-start content-start gap-[20px] w-[1180px] max-w-[1500px] h-[1240px]" style={{ padding: '0px' }}>
           {/* Product Grid Items */}
