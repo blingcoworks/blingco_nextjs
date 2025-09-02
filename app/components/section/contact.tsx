@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { BlingcoGreen } from "../Blingco";
 
 export default function Contact() {
@@ -30,11 +31,11 @@ export default function Contact() {
       </div>
 
       {/* Main */}
-      <div className="relative w-full flex flex-row justify-center items-center w-[1280px] h-[550px] bg-black" style={{ padding: '40px 100px 120px' }}>
+      <div className="relative w-full flex flex-row justify-center items-center h-[550px] bg-black" style={{ padding: '40px 100px 120px' }}>
         {/* Inner content */}
         <div className="flex flex-col items-center gap-[24px] w-[837px] max-w-[1200px] h-[377px] bg-[#727272] rounded-[24px]" style={{ padding: '50px 44px' }}>
           {/* Frame 2147238587 */}
-          <div className="flex flex-col justify-center items-center gap-[36px] w-[749px] h-[74px]" style={{ padding: '0px' }}>
+          <div className="flex flex-col justify-center items-center gap-[36px] w-[749px] h-auto" style={{ padding: '0px' }}>
             {/* 블링코와 함께할 크리에이터님을 기다립니다! */}
             <h3 className="w-[644px] h-[26px] text-white text-[36px] font-semibold leading-[90%] tracking-[-0.03em] uppercase text-center" style={{ fontFamily: 'Inter' }}>
               블링코와 함께할 <BlingcoGreen suffix="크리에이터님" />을 기다립니다!
@@ -44,6 +45,15 @@ export default function Contact() {
             <p className="w-[749px] h-[12px] text-white text-[16px] font-semibold leading-[22%] tracking-[-0.03em] uppercase text-center" style={{ fontFamily: 'Inter' }}>
               서브 텍스트 문장 입력서브 텍스트 문장 입력서브 텍스트 문장 입력
             </p>
+            
+            {/* 문의하기 버튼 추가 */}
+            <Link 
+              href="/contact" 
+              className="mt-8 px-8 py-4 bg-[#95FF8D] text-black text-[18px] font-bold rounded-lg hover:bg-[#7FE076] transition-all duration-300 transform hover:scale-105"
+              style={{ fontFamily: 'Inter' }}
+            >
+              문의하기
+            </Link>
           </div>
         </div>
       </div>

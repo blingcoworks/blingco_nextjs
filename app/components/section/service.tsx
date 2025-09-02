@@ -1,7 +1,7 @@
 export default function Service() {
   return (
     <section id="services" className="bg-[#252525] flex flex-col items-center justify-start relative w-full">
-      <div className="relative w-full flex flex-col items-start justify-start relative w-[1280px]">
+      <div className="relative w-full flex flex-col items-start justify-start">
         {/* Featured product */}
         <div 
           className="bg-[#00000033] flex flex-col gap-2 h-[800px] items-center justify-end px-[145px] py-20 relative w-full"
@@ -36,7 +36,7 @@ export default function Service() {
         </div>
 
         {/* Services content - Image slider */}
-        <div className="relative w-full relative bg-gradient-to-b from-[#000000] to-[#444e44] h-[800px] overflow-hidden relative w-[1280px]">
+        <div className="relative w-full bg-gradient-to-b from-[#000000] to-[#444e44] h-[800px] overflow-hidden">
           <div 
             className="absolute bottom-0 h-[878px] w-[798.182px]"
             style={{ left: "calc(50% + 0.091px)", transform: "translateX(-50%)" }}

@@ -53,11 +53,27 @@
     --foreground: #ededed;
   }
 }
+/* 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: #000000;
+  width: 100%;
+  overflow-x: hidden;
+} */
 
 body {
-  background: var(--background);
+  background: #000000;
   color: var(--foreground);
   font-family: var(--font-dm-sans), Arial, Helvetica, sans-serif;
+  /* margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden; */
 }
 
 /* Ensure footer is always visible */

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans, Roboto_Mono, Crimson_Text, Playfair_Display, Passion_One, Manrope, Poppins, Lato, Inter, Righteous } from "next/font/google";
+import Navigation from "./components/section/Navigation";
+import Footer from "./components/section/footer";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -75,7 +77,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${dmSans.variable} ${robotoMono.variable} ${crimsonText.variable} ${playfairDisplay.variable} ${passionOne.variable} ${manrope.variable} ${poppins.variable} ${lato.variable} ${inter.variable} ${righteous.variable} antialiased`}>
-        {children}
+        <Navigation />
+        <main className="w-full">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );

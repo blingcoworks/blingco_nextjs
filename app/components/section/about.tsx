@@ -17,7 +17,7 @@ export function AboutFirst() {
   return (
     <section id="about" className="relative w-full bg-white">
       {/* Featured product */}
-      <div className="relative w-full flex flex-col justify-center items-center gap-[8px] w-[1280px] h-[800px]" style={{
+      <div className="relative w-full flex flex-col justify-center items-center gap-[8px] h-[800px]" style={{
         padding: '80px 145px',
         background: 'linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)), #333333'
       }}>
@@ -41,11 +41,11 @@ export function AboutFirst() {
       </div>
 
       {/* Stocklist section */}
-      <div className="relative w-full flex flex-row justify-between items-start w-[1280px] h-[640px] bg-black" style={{ padding: '0px' }}>
+      <div className="relative w-full flex h-[640px] bg-black">
         {/* Text content */}
-        <div className="flex flex-col justify-center items-start gap-[136px] w-[640px] h-[640px] bg-black flex-1" style={{ padding: '23px 50px' }}>
+        <div className="flex flex-col justify-center items-start gap-[136px] flex-1 h-[640px] bg-black" style={{ padding: '23px 50px' }}>
           {/* 크리에이터님, 혹시 이런 고민 있으셨나요? */}
-          <h3 className="w-[580px] h-[108px] text-[40px] font-bold leading-[120%] tracking-[-0.03em] uppercase" style={{
+          <h3 className="text-[40px] font-bold leading-[120%] tracking-[-0.03em] uppercase" style={{
             fontFamily: 'Inter',
             background: 'linear-gradient(180.78deg, #FFFFFF 0.68%, #95FF8D 146.82%)',
             WebkitBackgroundClip: 'text',
@@ -57,7 +57,7 @@ export function AboutFirst() {
           </h3>
         </div>
         {/* Image */}
-        <div className="w-[640px] h-[640px] flex-1" style={{
+        <div className="flex-1 h-[640px]" style={{
           background: 'linear-gradient(90deg, #000000 8.31%, rgba(0, 0, 0, 0.567833) 75.87%, rgba(0, 0, 0, 0) 132.11%), url(/stocklist.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center'
@@ -179,7 +179,7 @@ export function AboutSecond() {
   return (
     <div>
       {/* Flavors section */}
-      <section className="relative w-full flex flex-col justify-center items-start bg-black gap-[16px] w-[1280px] h-[373px]" style={{ padding: '30px 50px' }}>
+      <section className="relative w-full flex flex-col justify-center items-start bg-black gap-[16px] h-[373px]" style={{ padding: '30px 50px' }}>
         <p className="text-[#95FF8D] text-[40px] leading-[100%] tracking-[0.01em]" style={{ fontFamily: 'var(--font-righteous)' }}>
           One and Only
         </p>
@@ -192,7 +192,7 @@ export function AboutSecond() {
       </section>
 
       {/* Product grid */}
-      <section className="relative w-full flex flex-col items-center bg-black gap-[100px] w-[1280px] h-[1295px]" style={{ padding: '36px 50px' }}>
+      <section className="relative w-full flex flex-col items-center bg-black gap-[100px] h-[1295px]" style={{ padding: '36px 50px' }}>
         {/* Products */}
         <div className="flex flex-row flex-wrap items-start content-start gap-[20px] w-[1180px] max-w-[1500px] h-[1240px]" style={{ padding: '0px' }}>
           {/* Product Grid Items */}

@@ -2,7 +2,7 @@ import { BlingcoLogo } from "../Blingco";
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-[#181818] py-12 px-24 border-t-2 border-[#333333] mt-8">
+    <footer className="w-full bg-[#181818] py-12 px-24">
       <div className="max-w-[1080px] mx-auto">
         <div className="flex justify-between items-start py-8">
           {/* Links */}
