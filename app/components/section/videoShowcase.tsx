@@ -149,11 +149,7 @@ export default function VideoShowcaseSection() {
     if (v.paused && isPlaying) v.play().catch(() => {});
   };
 
-  const seekBy = (delta: number) => {
-    const v = videoRef.current;
-    if (!v) return;
-    seekTo((v.currentTime || 0) + delta);
-  };
+
 
   const onScrub = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = (e.target as HTMLDivElement).getBoundingClientRect();

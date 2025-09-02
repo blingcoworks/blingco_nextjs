@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, Roboto_Mono, Crimson_Text, Playfair_Display, Passion_One, Manrope, Poppins, Lato, Inter } from "next/font/google";
+import { DM_Sans, Roboto_Mono, Crimson_Text, Playfair_Display, Passion_One, Manrope, Poppins, Lato, Inter, Righteous } from "next/font/google";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -56,6 +56,12 @@ const inter = Inter({
   weight: ["400", "500", "600"],
 });
 
+const righteous = Righteous({
+  variable: "--font-righteous",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
 export const metadata: Metadata = {
   title: "BLING.CO - the Next Collaboration",
   description: "We'd love to hear from you! Whether you have questions, feedback.",
@@ -68,7 +74,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${dmSans.variable} ${robotoMono.variable} ${crimsonText.variable} ${playfairDisplay.variable} ${passionOne.variable} ${manrope.variable} ${poppins.variable} ${lato.variable} ${inter.variable} antialiased`}>
+      <body className={`${dmSans.variable} ${robotoMono.variable} ${crimsonText.variable} ${playfairDisplay.variable} ${passionOne.variable} ${manrope.variable} ${poppins.variable} ${lato.variable} ${inter.variable} ${righteous.variable} antialiased`}>
         {children}
       </body>
     </html>
