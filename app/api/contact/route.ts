@@ -2,13 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { z } from 'zod'
 
-// Initialize Resend with API key
-const resend = new Resend(process.env.RESEND_API_KEY)
-
-// Log to verify API key is loaded (remove in production)
-if (!process.env.RESEND_API_KEY) {
-  console.error('RESEND_API_KEY is not set in environment variables')
-}
+// Initialize Resend conditionally to prevent build errors
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
 
 // Validation schema (same as frontend)
 const contactSchema = z.object({
@@ -25,6 +20,15 @@ export async function POST(request: NextRequest) {
   try {
     console.log('Contact API called')
     console.log('API Key exists:', !!process.env.RESEND_API_KEY)
+    
+    // Check if Resend is configured
+    if (!resend || !process.env.RESEND_API_KEY) {
+      console.error('RESEND_API_KEY is not configured')
+      return NextResponse.json(
+        { error: 'Email service not configured' },
+        { status: 503 }
+      )
+    }
     
     // Parse request body
     const body = await request.json()
