@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function About() {
   return (
-    <div>
+    <div className="next-section-after-hero">
       <AboutFirst />
       <MarqueeText />
       <AboutSecond />

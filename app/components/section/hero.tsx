@@ -1,16 +1,33 @@
 import { BlingcoLogo, BlingcoGreen } from "../Blingco";
+import Image from "next/image";
 
 export default function Hero() {
     return (
-        <section className="relative w-full h-screen bg-[#676767] blingco-hero-bg flex flex-col justify-center items-center gap-[143px]">
-        <div className="flex flex-col items-center gap-12">
-        <h1 className="blingco-hero-text text-center">
-            <BlingcoLogo />
-        </h1>
-        <p className="blingco-hero-subtitle text-center max-w-[640px]">
-            세상에 하나뿐인 크리에이터님만의 고부가가치 <BlingcoGreen suffix="패션 굿즈" />를 제작합니다.
-        </p>
-        </div>
+        <section className="hero-container">
+            {/* Fixed background image */}
+            <div className="hero-fixed-image">
+                <Image 
+                    src="/main_visual_img.png"
+                    alt="Hero background"
+                    fill
+                    priority
+                    className="object-cover"
+                    quality={100}
+                />
+                <div className="hero-overlay" />
+            </div>
+            
+            {/* Content overlay */}
+            <div className="hero-content">
+                <div className="flex flex-col items-center gap-12">
+                    <h1 className="blingco-hero-text text-center">
+                        <BlingcoLogo />
+                    </h1>
+                    <p className="blingco-hero-subtitle text-center max-w-[640px]">
+                        세상에 하나뿐인 크리에이터님만의 고부가가치 <BlingcoGreen suffix="패션 굿즈" />를 제작합니다.
+                    </p>
+                </div>
+            </div>
         </section>
     )
 }
