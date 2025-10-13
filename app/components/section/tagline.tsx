@@ -22,9 +22,10 @@ export default function Tagline({ mode = "scroll" }: TaglineProps) {
         const windowHeight = window.innerHeight;
         
         // 텍스트(섹션)가 화면 하단에 나타나기 시작할 때부터 페이드 시작
-        // 섹션이 화면 중앙에 올 때까지 천천히 페이드
-        const start = windowHeight; // 섹션 상단이 화면 하단에 닿을 때
-        const end = windowHeight / 2; // 섹션이 화면 중앙에 올 때 완전히 보임
+        // 섹션이 화면 상단에 닿을 때까지 천천히 페이드
+        // 페이드 속도를 더욱 늦추기 위해 거리를 크게 늘림
+        const start = windowHeight * 2; // 섹션이 화면 아래쪽에서 훨씬 더 일찍 페이드 시작
+        const end = -windowHeight * 1; // 섹션이 화면 위로 충분히 올라갈 때까지 페이드 지속
         const distance = start - end;
         const progress = Math.max(0, Math.min(1, (start - rect.top) / distance));
         

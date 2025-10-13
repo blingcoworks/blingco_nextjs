@@ -11,7 +11,7 @@ export default function Home() {
       <Hero />
       {/* mode="scroll": 스크롤 위치에 실시간 반응 (기본값) */}
       {/* mode="trigger": 섹션 진입 시 한 번만 실행 */}
-      <Slogan mode="scroll" />
+      <Slogan />
       <Tagline />
       <About />
       <HeroText />

@@ -7,13 +7,14 @@ const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KE
 
 // Validation schema (same as frontend)
 const contactSchema = z.object({
-  creatorName: z.string().min(2),
-  snsLinks: z.array(
+  name: z.string().min(2),
+  contact: z.string().min(5),
+  links: z.array(
     z.object({
       url: z.string().url()
     })
   ).min(1),
-  content: z.string().min(10)
+  content: z.string().min(5)
 })
 
 export async function POST(request: NextRequest) {
@@ -39,7 +40,7 @@ export async function POST(request: NextRequest) {
     console.log('Data validation passed')
     
     // Format SNS links for email
-    const snsLinksFormatted = validatedData.snsLinks
+    const linksFormatted = validatedData.links
       .map((link, index) => `${index + 1}. ${link.url}`)
       .join('\n')
     
@@ -53,12 +54,12 @@ export async function POST(request: NextRequest) {
         
         <div style="margin: 25px 0;">
           <p style="color: #666; font-size: 14px; margin: 0 0 5px 0;">크리에이터</p>
-          <p style="color: #000; font-size: 16px; font-weight: 500; margin: 0;">${validatedData.creatorName}</p>
+          <p style="color: #000; font-size: 16px; font-weight: 500; margin: 0;">${validatedData.name}</p>
         </div>
         
         <div style="margin: 25px 0;">
           <p style="color: #666; font-size: 14px; margin: 0 0 10px 0;">SNS 링크</p>
-          ${validatedData.snsLinks.map(link => 
+          ${validatedData.links.map(link => 
             `<p style="margin: 8px 0;"><a href="${link.url}" style="color: #007AFF; text-decoration: none;">${link.url}</a></p>`
           ).join('')}
         </div>
@@ -66,6 +67,11 @@ export async function POST(request: NextRequest) {
         <div style="margin: 25px 0;">
           <p style="color: #666; font-size: 14px; margin: 0 0 10px 0;">문의 내용</p>
           <p style="color: #000; font-size: 16px; line-height: 1.5; margin: 0; white-space: pre-wrap;">${validatedData.content}</p>
+        </div>
+
+        <div style="margin: 25px 0;">
+          <p style="color: #666; font-size: 14px; margin: 0 0 5px 0;">연락처</p>
+          <p style="color: #000; font-size: 16px; font-weight: 500; margin: 0;">${validatedData.contact}</p>
         </div>
         
         <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
@@ -83,10 +89,10 @@ export async function POST(request: NextRequest) {
     // Create plain text version for better email client compatibility
     const emailText = `새로운 문의
 
-크리에이터: ${validatedData.creatorName}
+크리에이터: ${validatedData.name}
 
 SNS 링크:
-${snsLinksFormatted}
+${linksFormatted}
 
 문의 내용:
 ${validatedData.content}
@@ -101,7 +107,7 @@ ${validatedData.content}
     const { data, error } = await resend.emails.send({
       from: 'onboarding@resend.dev', // Using Resend's default domain
       to: 'blingcoworks@gmail.com', // Must match the email registered with Resend
-      subject: `[Blingco 문의] ${validatedData.creatorName}님의 새로운 문의`,
+      subject: `[Blingco 문의] ${validatedData.name}님의 새로운 문의`,
       html: emailHtml,
       text: emailText
     })

@@ -3,59 +3,43 @@ import { BlingcoGreen } from "../Blingco";
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative flex flex-col items-center gap-[20px] w-full mx-auto min-h-[1371px] bg-black" style={{
-      padding: '0px'
-    }}>
-      {/* Featured product */}
-      <div className="relative w-full flex flex-col justify-end items-center gap-[8px] h-[800px]" style={{
-        padding: '80px 145px',
-        background: 'linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(/contact.png)',
+    <section 
+      id="contact" 
+      className="relative w-full overflow-hidden" 
+      style={{ 
+        height: '524px',
+        backgroundImage: 'url(/contact_bg.png)',
         backgroundSize: 'cover',
-        backgroundPosition: 'center'
-      }}>
-        {/* Text content */}
-        <div className="flex flex-col items-start w-[642px] h-[136px]" style={{ padding: '0px' }}>
-          {/* Header and subhead */}
-          <div className="flex flex-col justify-center items-center gap-[14px] w-[642px] h-[136px]" style={{ padding: '0px' }}>
-            {/* Contact Us */}
-            <h2 className="w-[639px] h-[96px] text-[#95FF8D] text-[120px] leading-[80%] tracking-[0.01em] whitespace-nowrap" style={{ fontFamily: 'var(--font-righteous)' }}>
-              Contact Us
-            </h2>
-            
-            {/* Description */}
-            <p className="w-[642px] h-[26px] text-white text-[20px] font-medium leading-[130%] tracking-[0.01em] text-center whitespace-nowrap" style={{ fontFamily: 'Inter' }}>
-              A bold, spiced aperitif featuring cardamom, ginger, and cinnamon.
-            </p>
-          </div>
-        </div>
-      </div>
+        backgroundPosition: 'center',
+        backgroundColor: '#0c0c0c'
+      }}
+    >
+      {/* 메인 컨텐츠 */}
+      <div className="relative px-[74px] pt-[156px]">
+        {/* Contact Us 타이틀 */}
+        <h1 className="text-[#95FF8D] text-[80px] font-bold leading-[1] mb-[44px]" style={{ fontFamily: 'Pretendard, sans-serif' }}>
+          Contact Us
+        </h1>
 
-      {/* Main */}
-      <div className="relative w-full flex flex-row justify-center items-center h-[550px] bg-black" style={{ padding: '40px 100px 120px' }}>
-        {/* Inner content */}
-        <div className="flex flex-col items-center gap-[24px] w-[837px] max-w-[1200px] h-[377px] bg-[#727272] rounded-[24px]" style={{ padding: '50px 44px' }}>
-          {/* Frame 2147238587 */}
-          <div className="flex flex-col justify-center items-center gap-[36px] w-[749px] h-auto" style={{ padding: '0px' }}>
-            {/* 블링코와 함께할 크리에이터님을 기다립니다! */}
-            <h3 className="w-[644px] h-[26px] text-white text-[36px] font-semibold leading-[90%] tracking-[-0.03em] uppercase text-center" style={{ fontFamily: 'Inter' }}>
-              블링코와 함께할 <BlingcoGreen suffix="크리에이터님" />을 기다립니다!
-            </h3>
-            
-            {/* 서브 텍스트 문장 입력서브 텍스트 문장 입력서브 텍스트 문장 입력 */}
-            <p className="w-[749px] h-[12px] text-white text-[16px] font-semibold leading-[22%] tracking-[-0.03em] uppercase text-center" style={{ fontFamily: 'Inter' }}>
-              서브 텍스트 문장 입력서브 텍스트 문장 입력서브 텍스트 문장 입력
-            </p>
-            
-            {/* 문의하기 버튼 추가 */}
-            <Link 
-              href="/contact" 
-              className="mt-8 px-8 py-4 bg-[#95FF8D] text-black text-[18px] font-bold rounded-lg hover:bg-[#7FE076] transition-all duration-300 transform hover:scale-105"
-              style={{ fontFamily: 'Inter' }}
-            >
-              문의하기
-            </Link>
-          </div>
+        {/* 블링코와 함께할 크리에이터님을 기다립니다! */}
+        <h2 className="text-white text-[20px] font-semibold leading-[0.9] tracking-[-0.6px] uppercase mb-[20px]" style={{ fontFamily: 'Pretendard, sans-serif' }}>
+          블링코와 함께할 <span className="text-[#95FF8D]">크리에이터님</span>을 기다립니다!
+        </h2>
+
+        {/* 설명 텍스트 */}
+        <div className="text-[#b1b1b1] text-[15px] font-medium leading-[20px] tracking-[-0.45px] uppercase mb-[28px] max-w-[294px]" style={{ fontFamily: 'Pretendard, sans-serif' }}>
+          <p className="mb-0">그래픽이 없어도, 제조를 몰라도 블링코와 함께라면</p>
+          <p>당신만의 패션 브랜드를 만들 수 있습니다.</p>
         </div>
+
+        {/* 문의하기 버튼 */}
+        <Link 
+          href="/contact" 
+          className="inline-flex items-center gap-2 px-6 py-3 bg-[#95FF8D] text-[#2f2f2f] text-[20px] font-bold rounded-[64px] hover:bg-[#7FE076] transition-all duration-300 transform hover:scale-105"
+          style={{ fontFamily: 'Pretendard, sans-serif', letterSpacing: '-0.6px' }}
+        >
+          문의하기 <span>→</span>
+        </Link>
       </div>
     </section>
   );
