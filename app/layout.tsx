@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Sans, Roboto_Mono, Crimson_Text, Playfair_Display, Passion_One, Manrope, Poppins, Lato, Inter, Righteous } from "next/font/google";
+import { Analytics } from '@vercel/analytics/next';
 import Navigation from "./components/section/Navigation";
 import Footer from "./components/section/footer";
 import "./globals.css";
@@ -82,6 +83,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
