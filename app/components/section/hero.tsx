@@ -20,11 +20,18 @@ export default function Hero() {
             {/* Content overlay */}
             <div className="hero-content">
                 <div className="flex flex-col items-center gap-12">
-                    <h1 className="blingco-hero-text text-center">
-                        <BlingcoLogo />
+                    <h1 className="text-center">
+                        <Image 
+                            src="/blingco_logo.svg"
+                            alt="Blingco"
+                            width={788}
+                            height={131}
+                            priority
+                            className="w-full max-w-[788px] h-auto"
+                        />
                     </h1>
-                    <p className="blingco-hero-subtitle text-center max-w-[640px]">
-                        세상에 하나뿐인 크리에이터님만의 고부가가치 <BlingcoGreen suffix="패션 굿즈" />를 제작합니다.
+                    <p className="text-white text-[24px] font-semibold leading-[1.4] text-center tracking-[-0.72px] max-w-[640px]">
+                        Fashion goods production solution for creators
                     </p>
                 </div>
             </div>
