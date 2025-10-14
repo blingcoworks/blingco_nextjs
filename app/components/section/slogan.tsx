@@ -38,7 +38,7 @@ export default function Slogan() {
       className="relative w-full h-[300vh] z-10"
     >
       {/* Sticky container - 화면에 고정되는 배경 */}
-      <div className="sticky top-0 w-full h-screen bg-[#0c0c0c] flex items-center justify-center overflow-hidden">
+      <div className="sticky top-0 w-full h-screen flex items-center justify-center overflow-hidden" style={{ backgroundColor: 'var(--blingco-bg-dark)' }}>
         {/* Phase 1: 슬라이드 애니메이션 */}
         <div
           className="absolute inset-0 flex flex-col justify-center items-center gap-4 md:gap-6 lg:gap-[32px]"

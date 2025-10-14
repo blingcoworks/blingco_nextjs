@@ -1,174 +1,144 @@
-import { BlingcoGreen, BlingcoLogo } from "../Blingco";
-import MarqueeText from "../MarqueeText";
-import Image from "next/image";
+"use client";
 
+import { useScrollProgress } from '@/app/hooks/useScrollProgress';
 
 export default function About() {
   return (
-    <div className="next-section-after-hero">
+    <div className="next-section-after-hero" style={{ backgroundColor: 'var(--blingco-bg-dark)' }}>
       <AboutFirst />
-      <MarqueeText />
       <AboutSecond />
+      <AboutThird />
     </div>
   )
 }
 
 export function AboutFirst() {
+  const { sectionRef, scrollProgress } = useScrollProgress();
+
+  // Calculate fade-in opacities within Phase 1 (scrollProgress 0 to 0.5)
+  // Heading fades in from 0 to 0.5 (slower fade)
+  const headingOpacity = Math.max(0, Math.min(1, scrollProgress / 0.5));
+  // Image fades in from 0.3 to 0.8 (slower fade, staggered effect)
+  const imageOpacity = Math.max(0, Math.min(1, (scrollProgress - 0.3) / 0.5));
+
   return (
-    <section id="about" className="relative w-full bg-white">
-      {/* Featured product */}
-      <div className="relative w-full flex flex-col justify-center items-center gap-[8px] h-[800px]" style={{
-        padding: '80px 145px',
-        background: 'linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)), #333333'
-      }}>
-        {/* Text content */}
-        <div className="flex flex-col justify-center items-center gap-[8px] w-[527px] h-[214px]" style={{ padding: '0px' }}>
-          {/* Header and subhead */}
-          <div className="flex flex-col justify-center items-center gap-[8px] w-[527px] h-[162px]" style={{ padding: '0px' }}>
-            {/* Frame 2147238584 */}
-            <div className="flex flex-col items-start gap-[14px] w-[527px] h-[162px]" style={{ padding: '0px' }}>
-              {/* About Us */}
-              <h2 className="w-[527px] h-[96px] text-[#95FF8D] text-[120px] leading-[80%] tracking-[0.01em] whitespace-nowrap" style={{ fontFamily: 'var(--font-righteous)' }}>
-                About Us
-              </h2>
-              {/* Description text */}
-              <p className="w-[527px] h-[52px] text-white text-[20px] leading-[130%] tracking-[0.01em] text-center" style={{ fontFamily: 'Inter' }}>
-                A bold, spiced aperitif featuring cardamom, ginger, and cinnamon.
-              </p>
-            </div>
+    <section ref={sectionRef} id="about" className="relative w-full" style={{ backgroundColor: 'var(--blingco-bg-dark)' }}>
+      <div className="flex flex-col gap-[98px] items-center pt-[127px] pb-0 px-0 w-full">
+        {/* Heading */}
+        <div
+          className="flex items-center text-center text-white max-w-[562px] w-full"
+          style={{
+            height: '125px',
+            fontFamily: 'Pretendard',
+            fontStyle: 'normal',
+            fontWeight: 700,
+            fontSize: '64px',
+            lineHeight: '80px',
+            letterSpacing: '-0.03em',
+            color: '#FFFFFF',
+            display: 'flex',
+            alignItems: 'center',
+            textAlign: 'center',
+            opacity: headingOpacity
+          }}
+        >
+          <div className="flex flex-col w-full">
+            <p className="mb-0 whitespace-nowrap">당신만의 이야기로 만든</p>
+            <p className="whitespace-nowrap">하나뿐인 패션 브랜드</p>
           </div>
         </div>
-      </div>
 
-      {/* Stocklist section */}
-      <div className="relative w-full flex h-[640px] bg-black">
-        {/* Text content */}
-        <div className="flex flex-col justify-center items-start gap-[136px] flex-1 h-[640px] bg-black" style={{ padding: '23px 50px' }}>
-          {/* 크리에이터님, 혹시 이런 고민 있으셨나요? */}
-          <h3 className="text-[40px] font-bold leading-[120%] tracking-[-0.03em] uppercase" style={{
-            fontFamily: 'Inter',
-            background: 'linear-gradient(180.78deg, #FFFFFF 0.68%, #95FF8D 146.82%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text'
-          }}>
-            크리에이터님,<br />
-            혹시 이런 고민 있으셨나요?
-          </h3>
-        </div>
-        {/* Image */}
-        <div className="flex-1 h-[640px]" style={{
-          background: 'linear-gradient(90deg, #000000 8.31%, rgba(0, 0, 0, 0.567833) 75.87%, rgba(0, 0, 0, 0) 132.11%), url(/stocklist.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}>
-        </div>
-      </div>
+        {/* Product Grid Image */}
+        <div
+          className="relative w-full max-w-[1280px]"
+          style={{
+            height: '801px',
+            background: 'linear-gradient(90deg, rgba(0, 0, 0, 0) 73.32%, rgba(0, 0, 0, 0.5) 107.23%), linear-gradient(270deg, rgba(0, 0, 0, 0) 73.71%, rgba(0, 0, 0, 0.5) 108.05%), url(/about_first.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: imageOpacity
+          }}
+        />
 
-      {/* Product showcase with text overlay */}
-      <div className="relative w-full h-[603px] bg-black flex items-center justify-center overflow-hidden">
-        {/* Product images positioned absolutely with opacity */}
-        <div className="absolute inset-0 opacity-25">
-          {/* Cap - top left */}
-          <Image 
-            src="/product_showcase/image_16-removebg-preview.png" 
-            alt="Product showcase"
-            width={300}
-            height={300}
-            className="absolute w-[300px] h-[300px]"
-            style={{
-              left: '80px',
-              top: '50px'
-            }}
-          />
-
-          {/* Main jacket - center */}
-          <Image 
-            src="/product_showcase/image_13-removebg-preview 1.png" 
-            alt="Product showcase"
-            width={400}
-            height={400}
-            className="absolute w-[400px] h-[400px]"
-            style={{
-              left: '50%',
-              top: '50%',
-              transform: 'translate(-50%, -50%)',
-              filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1))'
-            }}
-          />
-
-          {/* Hoodie - top right */}
-          <Image 
-            src="/product_showcase/image_13-removebg-preview 2.png" 
-            alt="Product showcase"
-            width={280}
-            height={280}
-            className="absolute w-[280px] h-[280px]"
-            style={{
-              right: '60px',
-              top: '40px',
-              filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1))'
-            }}
-          />
-
-          {/* Bag - bottom left */}
-          <Image 
-            src="/product_showcase/image_14-removebg-preview.png" 
-            alt="Product showcase"
-            width={250}
-            height={250}
-            className="absolute w-[250px] h-[250px]"
-            style={{
-              left: '100px',
-              bottom: '60px',
-              filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.08))'
-            }}
-          />
-
-          {/* Small accessory - bottom right */}
-          <Image 
-            src="/product_showcase/image_20-removebg-preview 1.png" 
-            alt="Product showcase"
-            width={200}
-            height={200}
-            className="absolute w-[200px] h-[200px]"
-            style={{
-              right: '80px',
-              bottom: '80px'
-            }}
-          />
-
-          {/* Additional item - left center */}
-          <Image 
-            src="/product_showcase/image_20-removebg-preview 2.png" 
-            alt="Product showcase"
-            width={180}
-            height={180}
-            className="absolute w-[180px] h-[180px]"
-            style={{
-              left: '40px',
-              top: '50%',
-              transform: 'translateY(-50%)'
-            }}
-          />
-        </div>
-
-        {/* Text overlay - centered */}
-        <div className="relative z-10 text-center max-w-[900px] px-4">
-          <p className="text-[#BEBEBE] text-[24px] font-medium text-center uppercase mb-4" style={{
-            fontFamily: 'Inter',
-            lineHeight: '57px',
-            letterSpacing: '-0.72px'
-          }}>
-            프린팅만 된 심심한 굿즈는 이제 그만!
-          </p>
-          <p className="text-white text-[36px] font-bold text-center uppercase" style={{
-            fontFamily: 'Inter',
-            lineHeight: '57px',
-            letterSpacing: '-1.08px'
-          }}>
-            당신만의 특별한 이야기를 <BlingcoGreen suffix="패션 굿즈" />로 만들어 드립니다.
-          </p>
+        {/* Marquee Text */}
+        <div className="w-full h-[60px] overflow-hidden relative opacity-60">
+          <div className="absolute w-[3840px] h-[60px] blingco-marquee">
+            {/* First section */}
+            <div className="absolute w-[1920px] h-[60px] left-0">
+              {[
+                { text: "JEWELRY", left: 20, weight: "medium" },
+                { text: "APPAREL", left: 137, weight: "semibold" },
+                { text: "BAG", left: 251, weight: "semibold" },
+                { text: "SHOES", left: 330, weight: "semibold" },
+                { text: "JEWELRY", left: 429, weight: "semibold" },
+                { text: "APPAREL", left: 546, weight: "medium" },
+                { text: "BAG", left: 660, weight: "medium" },
+                { text: "SHOES", left: 739, weight: "medium" },
+                { text: "JEWELRY", left: 838, weight: "medium" },
+                { text: "APPAREL", left: 955, weight: "medium" },
+                { text: "BAG", left: 1069, weight: "medium" },
+                { text: "SHOES", left: 1148, weight: "medium" },
+                { text: "JEWELRY", left: 1247, weight: "medium" },
+                { text: "APPAREL", left: 1364, weight: "medium" },
+                { text: "BAG", left: 1478, weight: "medium" },
+                { text: "SHOES", left: 1557, weight: "medium" },
+                { text: "JEWELRY", left: 1656, weight: "medium" },
+                { text: "BAG", left: 1773, weight: "medium" },
+                { text: "SHOES", left: 1852, weight: "medium" },
+              ].map((item, index) => (
+                <p
+                  key={`first-${index}`}
+                  className={`absolute text-white text-[20px] leading-[110%] tracking-[-0.4px] whitespace-nowrap ${
+                    item.weight === 'semibold' ? 'font-semibold' : 'font-medium'
+                  }`}
+                  style={{
+                    left: `${item.left}px`,
+                    top: 'calc(50% - 11px)',
+                    fontFamily: item.weight === 'semibold' ? 'Inter, sans-serif' : 'Pretendard, sans-serif'
+                  }}
+                >
+                  {item.text}
+                </p>
+              ))}
+            </div>
+            
+            {/* Second section - duplicate for seamless loop */}
+            <div className="absolute w-[1920px] h-[60px] left-[1920px]">
+              {[
+                { text: "JEWELRY", left: 20, weight: "semibold" },
+                { text: "APPAREL", left: 137, weight: "semibold" },
+                { text: "BAG", left: 251, weight: "semibold" },
+                { text: "SHOES", left: 330, weight: "semibold" },
+                { text: "JEWELRY", left: 429, weight: "semibold" },
+                { text: "APPAREL", left: 546, weight: "semibold" },
+                { text: "BAG", left: 660, weight: "semibold" },
+                { text: "SHOES", left: 739, weight: "semibold" },
+                { text: "JEWELRY", left: 838, weight: "semibold" },
+                { text: "APPAREL", left: 955, weight: "semibold" },
+                { text: "BAG", left: 1069, weight: "semibold" },
+                { text: "SHOES", left: 1148, weight: "semibold" },
+                { text: "JEWELRY", left: 1247, weight: "semibold" },
+                { text: "APPAREL", left: 1364, weight: "semibold" },
+                { text: "BAG", left: 1478, weight: "semibold" },
+                { text: "SHOES", left: 1557, weight: "semibold" },
+                { text: "JEWELRY", left: 1656, weight: "semibold" },
+                { text: "BAG", left: 1773, weight: "semibold" },
+                { text: "SHOES", left: 1852, weight: "semibold" },
+              ].map((item, index) => (
+                <p
+                  key={`second-${index}`}
+                  className="absolute text-white font-semibold text-[20px] leading-[110%] tracking-[-0.4px] whitespace-nowrap"
+                  style={{
+                    left: `${item.left}px`,
+                    top: 'calc(50% - 11px)',
+                    fontFamily: 'Inter, sans-serif'
+                  }}
+                >
+                  {item.text}
+                </p>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -178,59 +148,139 @@ export function AboutFirst() {
 export function AboutSecond() {
   return (
     <div>
-      {/* Flavors section */}
-      <section className="relative w-full flex flex-col justify-center items-start bg-black gap-[16px] h-[373px]" style={{ padding: '30px 50px' }}>
-        <p className="text-[#95FF8D] text-[40px] leading-[100%] tracking-[0.01em]" style={{ fontFamily: 'var(--font-righteous)' }}>
-          One and Only
-        </p>
-        <h2 className="text-white text-[96px] leading-[100%] tracking-[0.01em]" style={{ fontFamily: 'var(--font-righteous)' }}>
-          <BlingcoLogo suffix="'s" />
-        </h2>
-        <h3 className="text-white text-[96px] leading-[100%] tracking-[0.01em]" style={{ fontFamily: 'var(--font-righteous)' }}>
-          Fashion Goods
-        </h3>
-      </section>
+      <section className="relative w-full flex flex-col items-center gap-[100px] pt-[100px] pb-0 px-0" style={{ backgroundColor: 'var(--blingco-bg-dark)' }}>
+        {/* Heading */}
+        <div className="flex flex-col justify-center text-center text-white w-[615px]" style={{
+          fontFamily: 'Pretendard',
+          fontWeight: 700,
+          fontSize: '64px',
+          lineHeight: '80px',
+          letterSpacing: '-1.92px'
+        }}>
+          <p className="mb-0 whitespace-nowrap">블링코만의 다양한 혜택을</p>
+          <p className="whitespace-nowrap">확인해보세요.</p>
+        </div>
 
-      {/* Product grid */}
-      <section className="relative w-full flex flex-col items-center bg-black gap-[100px] h-[1295px]" style={{ padding: '36px 50px' }}>
-        {/* Products */}
-        <div className="flex flex-row flex-wrap items-start content-start gap-[20px] w-[1180px] max-w-[1500px] h-[1240px]" style={{ padding: '0px' }}>
-          {/* Product Grid Items */}
-          {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="flex flex-col items-start gap-[30px] w-[580px] min-w-[460px] max-w-[600px] h-[580px] flex-1" style={{ padding: '0px' }}>
-              {/* Image */}
-              <div className="flex flex-col items-start gap-[8px] w-[580px] h-[580px] rounded-[20px]" style={{
-                padding: '30px',
-                background: 'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%), url(/product_grid.png)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
+        {/* Benefits circles */}
+        <div className="relative w-full flex justify-center items-center">
+          {/* Circle 1 - 제품 대여 */}
+          <div className="relative flex items-center justify-center" style={{
+            width: '438px',
+            height: '452px',
+            marginRight: '-15px',
+            zIndex: 1
+          }}>
+            <div className="absolute inset-0 rounded-full" style={{
+              border: '1px solid var(--blingco-green)',
+              background: 'var(--blingco-bg-dark)'
+            }} />
+            <div className="relative text-center z-10">
+              <h3 className="text-white text-[32px] font-semibold mb-[15px]" style={{
+                fontFamily: 'Pretendard',
+                lineHeight: '30px',
+                letterSpacing: '-0.96px'
               }}>
-                {/* Text content */}
-                <div className="flex flex-col justify-end items-start gap-[168px] w-[520px] h-[460px]" style={{ padding: '0px' }}>
-                  <div className="flex-1"></div>
-                  <div className="flex flex-col items-start gap-[14px]">
-                    {/* 개별 맞춤화 */}
-                    <h4 className="w-[177px] h-[40px] text-[#95FF8D] text-[36px] font-semibold leading-[110%] tracking-[0.01em]" style={{ fontFamily: 'Inter' }}>
-                      개별 맞춤화
-                    </h4>
-                    {/* Text */}
-                    <div className="relative w-[520px] h-[52px]">
-                      {/* 크리에이터님의 아이덴티티 100% 반영한 패션 굿즈 */}
-                      <p className="absolute w-[570px] h-[24px] text-white text-[20px] font-medium leading-[24px] tracking-[-0.03em] uppercase" style={{
-                        left: '0px',
-                        top: '14px',
-                        fontFamily: 'Inter'
-                      }}>
-                        크리에이터님의 아이덴티티 100% 반영한 <BlingcoGreen suffix="패션 굿즈" />
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                제품 대여
+              </h3>
+              <p className="text-[#B2B2B2] text-[20px] font-medium" style={{
+                fontFamily: 'Pretendard',
+                lineHeight: '30px',
+                letterSpacing: '-0.6px'
+              }}>
+                500개 이상의 브랜드에서 제품을 대여하고<br />
+                무한한 스타일링을 시작해보세요.
+              </p>
             </div>
-          ))}
+          </div>
+
+          {/* Circle 2 - 제품 협찬 */}
+          <div className="relative flex items-center justify-center" style={{
+            width: '438px',
+            height: '452px',
+            marginLeft: '-15px',
+            marginRight: '-15px',
+            zIndex: 10
+          }}>
+            <div className="absolute inset-0 rounded-full" style={{
+              border: '1px solid var(--blingco-green)',
+              background: 'var(--blingco-bg-dark)'
+            }} />
+            <div className="relative text-center z-10">
+              <h3 className="text-white text-[32px] font-semibold mb-[15px]" style={{
+                fontFamily: 'Pretendard',
+                lineHeight: '30px',
+                letterSpacing: '-0.96px'
+              }}>
+                제품 협찬
+              </h3>
+              <p className="text-[#B2B2B2] text-[20px] font-medium" style={{
+                fontFamily: 'Pretendard',
+                lineHeight: '30px',
+                letterSpacing: '-0.6px'
+              }}>
+                500개 이상의 브랜드에서 제품을 대여하고<br />
+                무한한 스타일링을 시작해보세요.
+              </p>
+            </div>
+          </div>
+
+          {/* Circle 3 - 행사 초대 */}
+          <div className="relative flex items-center justify-center" style={{
+            width: '438px',
+            height: '452px',
+            marginLeft: '-15px',
+            zIndex: 1
+          }}>
+            <div className="absolute inset-0 rounded-full" style={{
+              border: '1px solid var(--blingco-green)',
+              background: 'var(--blingco-bg-dark)'
+            }} />
+            <div className="relative text-center z-10">
+              <h3 className="text-white text-[32px] font-semibold mb-[15px]" style={{
+                fontFamily: 'Pretendard',
+                lineHeight: '30px',
+                letterSpacing: '-0.96px'
+              }}>
+                행사 초대
+              </h3>
+              <p className="text-[#B2B2B2] text-[20px] font-medium" style={{
+                fontFamily: 'Pretendard',
+                lineHeight: '30px',
+                letterSpacing: '-0.6px'
+              }}>
+                500개 이상의 브랜드에서 제품을 대여하고<br />
+                무한한 스타일링을 시작해보세요.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </div>
+  )
+}
+
+export function AboutThird() {
+  return (
+    <section className="relative w-full h-screen flex items-center justify-center" style={{
+      background: 'url(/about3_bg.png)',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center'
+    }}>
+      <div className="absolute flex items-center text-center" style={{
+        width: '924px',
+        height: '160px',
+        left: 'calc(50% - 924px/2)',
+        top: 'calc(50% - 160px/2)',
+        fontFamily: 'Pretendard',
+        fontStyle: 'normal',
+        fontWeight: 700,
+        fontSize: '64px',
+        lineHeight: '80px',
+        letterSpacing: '-0.03em',
+        color: '#FFFFFF'
+      }}>
+        한계 없는 스타일, 무한한 패션 굿즈의 세계를 경험하세요.
+      </div>
+    </section>
   )
 }

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { BlingcoGreen } from "../Blingco";
 
 export default function Contact() {
   return (

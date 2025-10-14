@@ -1,4 +1,3 @@
-import { BlingcoLogo, BlingcoGreen } from "../Blingco";
 import Image from "next/image";
 
 export default function Hero() {

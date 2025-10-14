@@ -21,9 +21,7 @@ export function useScrollProgress() {
       const rect = section.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-      // Phase 1: 섹션 하단이 화면 하단에서 시작 → 섹션 상단이 화면 상단에 닿을 때까지
-      // Phase 2: 섹션이 sticky로 고정된 후 한 화면 더 스크롤
-
+      // 섹션 하단이 화면 하단에서 시작 → 섹션 상단이 화면 상단에 닿을 때까지
       const scrolledDistance = windowHeight - rect.top;
       const totalDistance = windowHeight * 2; // 두 화면 분량
 
