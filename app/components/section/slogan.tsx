@@ -1,78 +1,29 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useScrollProgress } from "@/app/hooks/useScrollProgress";
+import { calculateThreePhaseOpacity } from "@/app/utils/threePhaseTransition";
 
 export default function Slogan() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    // 스크롤 위치에 실시간 반응
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
-
-      const section = sectionRef.current;
-      const rect = section.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-      // Phase 1: 섹션 하단이 화면 하단에서 시작 → 섹션 상단이 화면 상단에 닿을 때까지
-      // Phase 2: 섹션이 sticky로 고정된 후 한 화면 더 스크롤
-
-      const scrolledDistance = windowHeight - rect.top;
-      const totalDistance = windowHeight * 2; // 두 화면 분량
-
-      // 전체 진행률 계산 (0~1)
-      const totalProgress = Math.max(0, Math.min(1, scrolledDistance / totalDistance));
-
-      setScrollProgress(totalProgress);
-    };
-
-    // 초기 실행
-    handleScroll();
-
-    // 스크롤 이벤트 리스너 등록
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
-    };
-  }, []);
+  const { sectionRef, scrollProgress } = useScrollProgress();
 
   // 3단계 애니메이션 분할
-  // Phase 1 (0-0.5): 슬라이드 인 애니메이션 (더 길게)
-  // Phase 2 (0.5-0.75): 슬라이드 텍스트 페이드 아웃
-  // Phase 3 (0.75-1.0): 새 텍스트 페이드 인
+  const {
+    firstOpacity: slideTextOpacity,
+    secondOpacity: fadeInOpacity,
+    firstThreshold,
+  } = calculateThreePhaseOpacity(scrollProgress);
 
-  let leftTransform: string;
-  let rightTransform: string;
-  let slideTextOpacity: number;
-  let fadeInOpacity: number;
+  // Transform 계산 (슬라이드 애니메이션)
+  let leftTransform: string = `translateX(0%)`;
+  let rightTransform: string = `translateX(0%)`;
 
-  if (scrollProgress < 0.5) {
+  if (scrollProgress < firstThreshold) {
     // Phase 1: 슬라이드 인
-    const phase1Progress = scrollProgress / 0.5;
+    const phase1Progress = scrollProgress / firstThreshold;
     const leftTranslate = (1 - phase1Progress) * -100;
     const rightTranslate = (1 - phase1Progress) * 100;
     leftTransform = `translateX(${leftTranslate}%)`;
     rightTransform = `translateX(${rightTranslate}%)`;
-    slideTextOpacity = 1;
-    fadeInOpacity = 0;
-  } else if (scrollProgress < 0.75) {
-    // Phase 2: 슬라이드 완료, 텍스트 페이드 아웃
-    const phase2Progress = (scrollProgress - 0.5) / 0.25;
-    leftTransform = `translateX(0%)`;
-    rightTransform = `translateX(0%)`;
-    slideTextOpacity = 1 - phase2Progress;
-    fadeInOpacity = 0;
-  } else {
-    // Phase 3: 새 텍스트 페이드 인
-    const phase3Progress = (scrollProgress - 0.75) / 0.25;
-    leftTransform = `translateX(0%)`;
-    rightTransform = `translateX(0%)`;
-    slideTextOpacity = 0;
-    fadeInOpacity = phase3Progress;
   }
 
   // 공통 스타일
@@ -84,7 +35,7 @@ export default function Slogan() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full h-[200vh] z-10"
+      className="relative w-full h-[300vh] z-10"
     >
       {/* Sticky container - 화면에 고정되는 배경 */}
       <div className="sticky top-0 w-full h-screen bg-[#0c0c0c] flex items-center justify-center overflow-hidden">

@@ -1,44 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useScrollProgress } from "@/app/hooks/useScrollProgress";
+import { calculateThreePhaseOpacity } from "@/app/utils/threePhaseTransition";
 
 export default function Message() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    // 스크롤 위치에 실시간 반응
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
-
-      const section = sectionRef.current;
-      const rect = section.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-      // Phase 1: 섹션 하단이 화면 하단에서 시작 → 섹션 상단이 화면 상단에 닿을 때까지
-      // Phase 2: 섹션이 sticky로 고정된 후 한 화면 더 스크롤
-
-      const scrolledDistance = windowHeight - rect.top;
-      const totalDistance = windowHeight * 2; // 두 화면 분량
-
-      // 전체 진행률 계산 (0~1)
-      const totalProgress = Math.max(0, Math.min(1, scrolledDistance / totalDistance));
-
-      setScrollProgress(totalProgress);
-    };
-
-    // 초기 실행
-    handleScroll();
-
-    // 스크롤 이벤트 리스너 등록
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
-    };
-  }, []);
+  const { sectionRef, scrollProgress } = useScrollProgress();
 
   // 배경: 2단계 크로스페이드
   // 메시지: 3단계 순차 전환
@@ -51,22 +17,8 @@ export default function Message() {
   const bg2Opacity = phase2Progress * 0.4; // 0 → 0.4
 
   // 메시지: 3단계 순차 전환 (겹치지 않음)
-  let message1Opacity: number;
-  let message2Opacity: number;
-
-  if (scrollProgress < 0.5) {
-    // Phase 1: 메시지 1 페이드 인
-    message1Opacity = scrollProgress / 0.5;
-    message2Opacity = 0;
-  } else if (scrollProgress < 0.75) {
-    // Phase 2: 메시지 1 페이드 아웃
-    message1Opacity = 1 - (scrollProgress - 0.5) / 0.25;
-    message2Opacity = 0;
-  } else {
-    // Phase 3: 메시지 2 페이드 인
-    message1Opacity = 0;
-    message2Opacity = (scrollProgress - 0.75) / 0.25;
-  }
+  const { firstOpacity: message1Opacity, secondOpacity: message2Opacity } =
+    calculateThreePhaseOpacity(scrollProgress);
 
   // 메시지 내용과 배경 이미지 설정
   const messageContent = {
@@ -89,7 +41,7 @@ export default function Message() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full h-[200vh] z-10"
+      className="relative w-full h-[300vh] z-10"
     >
       {/* Sticky container - 화면에 고정되는 배경 */}
       <div className="sticky top-0 w-full h-screen bg-[#0c0c0c] flex items-center justify-center overflow-hidden">
