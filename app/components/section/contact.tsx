@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Contact() {
   return (
@@ -15,10 +16,16 @@ export default function Contact() {
     >
       {/* 메인 컨텐츠 */}
       <div className="relative px-[74px] pt-[156px]">
-        {/* Contact Us 타이틀 */}
-        <h1 className="text-[#95FF8D] text-[80px] font-bold leading-[1] mb-[44px]" style={{ fontFamily: 'Pretendard, sans-serif' }}>
-          Contact Us
-        </h1>
+        {/* Contact Us SVG 로고 */}
+        <div className="mb-[44px]">
+          <Image 
+            src="/Contact Us.svg"
+            alt="Contact Us"
+            width={524}
+            height={80}
+            className="w-auto h-auto"
+          />
+        </div>
 
         {/* 블링코와 함께할 크리에이터님을 기다립니다! */}
         <h2 className="text-white text-[20px] font-semibold leading-[0.9] tracking-[-0.6px] uppercase mb-[20px]" style={{ fontFamily: 'Pretendard, sans-serif' }}>

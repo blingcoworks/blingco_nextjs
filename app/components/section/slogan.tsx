@@ -26,11 +26,42 @@ export default function Slogan() {
     rightTransform = `translateX(${rightTranslate}%)`;
   }
 
-  // 공통 스타일
-  const textBaseClasses = "text-[48px] md:text-[80px] lg:text-[128px] font-black leading-[1.3] md:leading-[1.25] lg:leading-[1.2] tracking-[-0.02em] md:tracking-[-0.015em] lg:tracking-[-1.28px] whitespace-nowrap will-change-transform";
+  const fontWeight = 550;
+
+  // Figma 디자인 공통 스타일 (폰트 크기 제외)
+
+  const baseClassName = "whitespace-nowrap will-change-transform text-[48px] md:text-[72px] lg:text-[96px]";
+  const weAreClassName = "text-[32px] md:text-[48px] lg:text-[64px]";
+  const fashionClassName = "text-[48px] md:text-[72px] lg:text-[90px]";
+
+  const baseTextStyle = {
+    fontFamily: 'Aggravo, sans-serif',
+    fontWeight: fontWeight,
+    lineHeight: '120%',
+    letterSpacing: '-2.88px',
+    textAlign: 'center' as const
+  };
+
+  const weAreStyle = {
+    fontFamily: 'Aggravo, sans-serif',
+    fontWeight: fontWeight,
+    lineHeight: '120%',
+    letterSpacing: '-1.92px',
+    color: '#EEE',
+    textAlign: 'center' as const
+  };
+
+  const fashionTextStyle = {
+    fontFamily: 'Aggravo, sans-serif',
+    fontWeight: fontWeight,
+    lineHeight: '120%',
+    letterSpacing: '-2.7px',
+    color: '#9747FF',
+    textAlign: 'center' as const
+  };
   
   // 중앙에서 오프셋 값 (%)
-  const OFFSET_PERCENTAGE = 15;
+  const OFFSET_PERCENTAGE = 25;
 
   return (
     <section
@@ -52,8 +83,8 @@ export default function Slogan() {
             <div className="relative w-full flex justify-center mb-4 md:mb-6 lg:mb-[32px]">
               <div className="relative" style={{ marginLeft: `-${OFFSET_PERCENTAGE}%` }}>
                 <h2
-                  className={`text-white ${textBaseClasses}`}
-                  style={{ transform: leftTransform }}
+                  className={baseClassName}
+                  style={{ transform: leftTransform, ...baseTextStyle, color: '#EEE' }}
                 >
                   Beyond Goods,
                 </h2>
@@ -64,10 +95,10 @@ export default function Slogan() {
             <div className="relative w-full flex justify-center">
               <div className="relative" style={{ marginRight: `-${OFFSET_PERCENTAGE}%` }}>
                 <h2
-                  className={`text-[#95ff8d] ${textBaseClasses}`}
-                  style={{ transform: rightTransform }}
+                  className={baseClassName}
+                  style={{ transform: rightTransform, ...baseTextStyle, color: '#95FF8D' }}
                 >
-                  Your Own Brand
+                  Your Own Brand.
                 </h2>
               </div>
             </div>
@@ -82,15 +113,24 @@ export default function Slogan() {
             willChange: "opacity",
           }}
         >
-          <div className="text-center">
-            <h2 className="font-black text-white text-[48px] md:text-[64px] lg:text-[80px] leading-tight">
+          <div className="text-center px-2 md:px-4 lg:px-8">
+            <h2 
+              className={weAreClassName}
+              style={weAreStyle}
+            >
               WE ARE
             </h2>
-            <h2 className="font-black text-[#9747ff] text-[48px] md:text-[64px] lg:text-[80px] leading-none -mt-2 md:-mt-3 lg:-mt-4">
+            <h2 
+              className={fashionClassName}
+              style={fashionTextStyle}
+            >
               FASHION GOODS
             </h2>
-            <h2 className="font-black text-[#9747ff] text-[48px] md:text-[64px] lg:text-[80px] leading-none -mt-2 md:-mt-3 lg:-mt-4">
-              PUBLINSHING SOLUTION
+            <h2 
+              className={fashionClassName}
+              style={fashionTextStyle}
+            >
+              PUBLISHING SOLUTION
             </h2>
           </div>
         </div>

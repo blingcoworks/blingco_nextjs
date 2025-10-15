@@ -23,7 +23,7 @@ export default function Navigation() {
 
       {/* Navigation Menu */}
       <div className="flex items-center gap-[30px]">
-        <Link href="/#about" className={navLinkClass}>
+        <Link href="/about" className={navLinkClass}>
           About us
         </Link>
         <Link href="/solution" className={navLinkClass}>

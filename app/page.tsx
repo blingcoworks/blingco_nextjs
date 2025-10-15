@@ -1,8 +1,8 @@
-import About from "./components/section/about";
 import Hero from "./components/section/hero";
-import Contact from "./components/section/contact";
 import Slogan from "./components/section/slogan";
 import Message from "./components/section/message";
+import Contents from "./components/section/contents";
+import Contact from "./components/section/contact";
 
 export default function Home() {
   return (
@@ -10,7 +10,7 @@ export default function Home() {
       <Hero />
       <Slogan />
       <Message />
-      <About />
+      <Contents />
       <Contact />
     </div>
   );

@@ -6,7 +6,10 @@ export default function SolutionPage() {
   return (
     <div className="bg-[#0c0c0c]">
       {/* Hero Section - Our solutions */}
-      <section className="min-h-screen flex items-center justify-center py-[140px] px-4">
+      <section 
+        className="min-h-screen flex items-center justify-center py-[140px] px-4 bg-cover bg-center bg-no-repeat" 
+        style={{ backgroundImage: 'url(/soultion_title_bg.png)' }}
+      >
         <div 
           className="flex flex-col items-center"
           style={{

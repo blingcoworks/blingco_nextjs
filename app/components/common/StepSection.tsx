@@ -29,7 +29,7 @@ export default function StepSection({
   const isLeftLayout = layout === 'left';
   
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden px-4 sm:px-8 lg:px-16 xl:px-32">
+    <section className="relative min-h-screen flex items-center overflow-hidden px-4 sm:px-8 lg:px-16 xl:px-32" style={{ backgroundColor: 'var(--blingco-bg-dark)' }}>
       {/* Image */}
       <div className={`absolute ${isLeftLayout ? 'right-0' : 'left-0'} top-1/2 -translate-y-1/2 w-1/2 h-full flex items-center justify-center`}>
         <Image 

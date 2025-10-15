@@ -14,25 +14,9 @@ export default function Footer() {
           </p>
         </div>
         
-        {/* Center - Navigation Links */}
+        {/* Center - Contact info */}
         <div className="flex flex-col gap-[7px] pb-[120px]">
-          <Link href="/#about" className="text-white text-[16px] leading-[1.39] tracking-[-0.16px] hover:opacity-80 transition-opacity">
-            About
-          </Link>
-          <Link href="/#services" className="text-white text-[16px] leading-[1.39] tracking-[-0.16px] hover:opacity-80 transition-opacity">
-            Solution
-          </Link>
-          <Link href="/#insight" className="text-white text-[16px] leading-[1.39] tracking-[-0.16px] hover:opacity-80 transition-opacity">
-            Insight
-          </Link>
-          <Link href="/#contact" className="text-white text-[16px] leading-[1.39] tracking-[-0.16px] hover:opacity-80 transition-opacity">
-            Contact
-          </Link>
-        </div>
-        
-        {/* Right - Contact info */}
-        <div className="flex flex-col gap-[7px] pb-[120px]">
-          <p className="text-white/60 text-[16px] leading-[1.39] tracking-[-0.16px]">
+          <p className="text-white/60 text-[16px] leading-[1.39] tracking-[-0.16px] transition-opacity">
             T. +82.10.2602.8219
           </p>
           <p className="text-white/60 text-[16px] leading-[1.39] tracking-[-0.16px]">
@@ -41,6 +25,10 @@ export default function Footer() {
           <p className="text-white/60 text-[16px] leading-[1.39] tracking-[-0.16px]">
             A. 서울특별시 금천구 범안로 15길 22-5
           </p>
+        </div>
+        
+        {/* Right - Contact info */}
+        <div className="flex flex-col gap-[7px] pb-[120px]">
         </div>
       </div>
       
