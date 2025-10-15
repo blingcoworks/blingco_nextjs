@@ -6,7 +6,7 @@ export default function ContactPage() {
     <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center py-[140px] px-4" style={{ backgroundImage: 'url(/contact_main_bg.png)' }}>
       <div className="w-full max-w-[653px]">
         {/* Contact Us 타이틀 */}
-        <div className="text-center mb-[84px] flex flex-col items-center">
+        <div className="text-center mb-[41px] flex flex-col items-center">
           <div className="mb-[41px]">
             <Image 
               src="/Contact Us.svg"
@@ -22,7 +22,7 @@ export default function ContactPage() {
         </div>
         
         {/* 폼 컨테이너 */}
-        <div className="bg-[#1d1d1d] rounded-[30px] px-13 py-15">
+        <div className="bg-[#1d1d1d] rounded-[30px] px-13 py-12">
           <ContactForm />
         </div>
       </div>

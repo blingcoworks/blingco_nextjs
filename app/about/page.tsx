@@ -1,30 +1,31 @@
 "use client";
 
 import { useScrollProgress } from '@/app/hooks/useScrollProgress';
+import MarqueeText from '../components/MarqueeText';
 
 export default function AboutPage() {
   return (
     <div className="bg-[#0c0c0c]">
       <AboutFirst />
+      <MarqueeText />
       <AboutSecond />
     </div>
   );
 }
 
-export function AboutFirst() {
+function AboutFirst() {
   const { sectionRef, scrollProgress } = useScrollProgress();
 
   // Calculate fade-in opacities within Phase 1 (scrollProgress 0 to 0.5)
   // Heading fades in from 0 to 0.5 (slower fade)
-  const headingOpacity = Math.max(0, Math.min(1, scrollProgress / 0.5));
+  const opacity = Math.max(0, Math.min(1, scrollProgress / 0.5));
   // Image fades in from 0.3 to 0.8 (slower fade, staggered effect)
   // const imageOpacity = Math.max(0, Math.min(1, (scrollProgress - 0.3) / 0.5)); // slower than heading
-  const imageOpacity = headingOpacity;
 
 
   return (
     <section ref={sectionRef} id="about" className="relative w-full" style={{ backgroundColor: 'var(--blingco-bg-dark)' }}>
-      <div className="flex flex-col gap-[98px] items-center pt-[127px] pb-0 px-0 w-full">
+      <div className="flex flex-col gap-[165px] items-center pt-[127px] pb-[165px] px-0 w-full">
         {/* Heading */}
         <div
           className="flex items-center text-center text-white max-w-[562px] w-full"
@@ -40,7 +41,7 @@ export function AboutFirst() {
             display: 'flex',
             alignItems: 'center',
             textAlign: 'center',
-            opacity: headingOpacity
+            opacity: opacity
           }}
         >
           <div className="flex flex-col w-full">
@@ -57,96 +58,15 @@ export function AboutFirst() {
             background: 'linear-gradient(90deg, rgba(0, 0, 0, 0) 73.32%, rgba(0, 0, 0, 0.5) 107.23%), linear-gradient(270deg, rgba(0, 0, 0, 0) 73.71%, rgba(0, 0, 0, 0.5) 108.05%), url(/about_first.png)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            opacity: imageOpacity
+            opacity: opacity
           }}
         />
-
-        {/* Marquee Text */}
-        <div className="w-full h-[60px] overflow-hidden relative opacity-60">
-          <div className="absolute w-[3840px] h-[60px] blingco-marquee">
-            {/* First section */}
-            <div className="absolute w-[1920px] h-[60px] left-0">
-              {[
-                { text: "JEWELRY", left: 20, weight: "medium" },
-                { text: "APPAREL", left: 137, weight: "semibold" },
-                { text: "BAG", left: 251, weight: "semibold" },
-                { text: "SHOES", left: 330, weight: "semibold" },
-                { text: "JEWELRY", left: 429, weight: "semibold" },
-                { text: "APPAREL", left: 546, weight: "medium" },
-                { text: "BAG", left: 660, weight: "medium" },
-                { text: "SHOES", left: 739, weight: "medium" },
-                { text: "JEWELRY", left: 838, weight: "medium" },
-                { text: "APPAREL", left: 955, weight: "medium" },
-                { text: "BAG", left: 1069, weight: "medium" },
-                { text: "SHOES", left: 1148, weight: "medium" },
-                { text: "JEWELRY", left: 1247, weight: "medium" },
-                { text: "APPAREL", left: 1364, weight: "medium" },
-                { text: "BAG", left: 1478, weight: "medium" },
-                { text: "SHOES", left: 1557, weight: "medium" },
-                { text: "JEWELRY", left: 1656, weight: "medium" },
-                { text: "BAG", left: 1773, weight: "medium" },
-                { text: "SHOES", left: 1852, weight: "medium" },
-              ].map((item, index) => (
-                <p
-                  key={`first-${index}`}
-                  className={`absolute text-white text-[20px] leading-[110%] tracking-[-0.4px] whitespace-nowrap ${
-                    item.weight === 'semibold' ? 'font-semibold' : 'font-medium'
-                  }`}
-                  style={{
-                    left: `${item.left}px`,
-                    top: 'calc(50% - 11px)',
-                    fontFamily: item.weight === 'semibold' ? 'Inter, sans-serif' : 'Pretendard, sans-serif'
-                  }}
-                >
-                  {item.text}
-                </p>
-              ))}
-            </div>
-            
-            {/* Second section - duplicate for seamless loop */}
-            <div className="absolute w-[1920px] h-[60px] left-[1920px]">
-              {[
-                { text: "JEWELRY", left: 20, weight: "semibold" },
-                { text: "APPAREL", left: 137, weight: "semibold" },
-                { text: "BAG", left: 251, weight: "semibold" },
-                { text: "SHOES", left: 330, weight: "semibold" },
-                { text: "JEWELRY", left: 429, weight: "semibold" },
-                { text: "APPAREL", left: 546, weight: "semibold" },
-                { text: "BAG", left: 660, weight: "semibold" },
-                { text: "SHOES", left: 739, weight: "semibold" },
-                { text: "JEWELRY", left: 838, weight: "semibold" },
-                { text: "APPAREL", left: 955, weight: "semibold" },
-                { text: "BAG", left: 1069, weight: "semibold" },
-                { text: "SHOES", left: 1148, weight: "semibold" },
-                { text: "JEWELRY", left: 1247, weight: "semibold" },
-                { text: "APPAREL", left: 1364, weight: "semibold" },
-                { text: "BAG", left: 1478, weight: "semibold" },
-                { text: "SHOES", left: 1557, weight: "semibold" },
-                { text: "JEWELRY", left: 1656, weight: "semibold" },
-                { text: "BAG", left: 1773, weight: "semibold" },
-                { text: "SHOES", left: 1852, weight: "semibold" },
-              ].map((item, index) => (
-                <p
-                  key={`second-${index}`}
-                  className="absolute text-white font-semibold text-[20px] leading-[110%] tracking-[-0.4px] whitespace-nowrap"
-                  style={{
-                    left: `${item.left}px`,
-                    top: 'calc(50% - 11px)',
-                    fontFamily: 'Inter, sans-serif'
-                  }}
-                >
-                  {item.text}
-                </p>
-              ))}
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
 }
 
-export function AboutSecond() {
+function AboutSecond() {
   return (
     <div>
       <section 

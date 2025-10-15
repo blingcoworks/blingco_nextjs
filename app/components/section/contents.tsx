@@ -1,6 +1,5 @@
 "use client";
 
-import { useScrollProgress } from '@/app/hooks/useScrollProgress';
 
 export default function Contents() {
   return (

@@ -25,45 +25,41 @@ export default function MarqueeText() {
   ];
   
   return (
-    <div className="relative w-full h-[60px] bg-[#1F41FF] overflow-hidden">
+    <div className="relative w-full h-[60px] bg-[#9747FF] overflow-hidden">
       <div className="absolute w-[3840px] h-[60px] blingco-marquee">
         {/* First section - 1920px width */}
         <div className="absolute w-[1920px] h-[60px] left-0">
           {textPositions.map((item, index) => (
-            <span
-              key={`first-${index}`}
-              className="absolute text-white font-inter font-semibold text-[20px] leading-[110%] tracking-[-0.02em]"
-              style={{
-                left: `${item.left}px`,
-                top: 'calc(50% - 11px + 3px)', // 22px height / 2 = 11px
-                width: item.text === 'JEWELRY' ? '92px' : 
-                       item.text === 'APPAREL' ? '88px' : 
-                       item.text === 'BAG' ? '42px' : '67px',
-                height: '22px'
-              }}
-            >
-              {item.text}
-            </span>
+              <p
+                key={`first-${index}`}
+                className="absolute font-medium text-[20px] leading-[110%] tracking-[-0.4px] whitespace-nowrap"
+                style={{
+                  left: `${item.left}px`,
+                  top: 'calc(50% - 11px)',
+                  fontFamily: 'Pretendard, sans-serif',
+                  color: '#000000'
+                }}
+              >
+                {item.text}
+              </p>
           ))}
         </div>
         
         {/* Second section - duplicate for seamless loop */}
         <div className="absolute w-[1920px] h-[60px] left-[1920px]">
           {textPositions.map((item, index) => (
-            <span
+            <p
               key={`second-${index}`}
-              className="absolute text-white font-inter font-semibold text-[20px] leading-[110%] tracking-[-0.02em]"
+              className="absolute font-semibold text-[20px] leading-[110%] tracking-[-0.4px] whitespace-nowrap"
               style={{
                 left: `${item.left}px`,
-                top: 'calc(50% - 11px + 3px)',
-                width: item.text === 'JEWELRY' ? '92px' : 
-                       item.text === 'APPAREL' ? '88px' : 
-                       item.text === 'BAG' ? '42px' : '67px',
-                height: '22px'
+                top: 'calc(50% - 11px)',
+                fontFamily: 'Pretendard, sans-serif',
+                color: '#000000'
               }}
             >
               {item.text}
-            </span>
+            </p>
           ))}
         </div>
       </div>

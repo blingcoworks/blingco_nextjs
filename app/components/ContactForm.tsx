@@ -80,9 +80,9 @@ export default function ContactForm() {
       transition={{ duration: 0.5 }}
       className="w-full"
     >
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-12 pb-0">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-12 py-0">
         {/* Creator Name Field */}
-        <div className="space-y-[18px]">
+        <div className="space-y-[18px] pt-6">
           <label htmlFor="name" className="block text-white text-[20px] leading-[0.22] tracking-[-0.6px]" style={{ fontFamily: 'Pretendard, sans-serif' }}>
             크리에이터 이름<span className="text-[#95FF8D]">*</span>
           </label>
@@ -246,7 +246,7 @@ export default function ContactForm() {
           </motion.button>
 
           {/* 안내 텍스트 */}
-          <div className="text-center text-[#b1b1b1] text-[18px] leading-[28px] tracking-[-0.54px] mb-0" style={{ fontFamily: 'Pretendard, sans-serif' }}>
+          <div className="text-center text-[#b1b1b1] text-[18px] leading- tracking-[-0.54px] mb-0" style={{ fontFamily: 'Pretendard, sans-serif' }}>
             <p className="mb-0">문의 내용은 blingcoworks@gmail.com으로 전송됩니다.</p>
             <p className="mb-0">영업일 기준 1-2일 이내에 답변드리겠습니다.</p>
           </div>

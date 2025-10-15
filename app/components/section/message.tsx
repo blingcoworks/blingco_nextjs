@@ -32,7 +32,9 @@ export default function Message() {
     2: {
       text: [
         "오직 당신의 콘텐츠만이 만들 수 있는",
-        "세상에 하나뿐인 브랜드를 경험하세요."
+        "세상에 하나뿐인 브랜드를 경험하세요.",
+        "블링코와 함께하는 무한한 패션 굿즈의 세계를 경험하세요.",
+        "블링코와 함께하는 무한한 패션 굿즈의 세계를 경험하세요."
       ],
       backgroundImage: "/message_bg_2.png"
     }
@@ -75,16 +77,7 @@ export default function Message() {
         >
           <div className="text-center max-w-4xl">
             <div
-              className="font-bold text-white text-[48px] leading-[140%] tracking-[-0.03em] whitespace-pre-line flex flex-col items-center justify-center"
-              style={{
-                fontFamily: 'Pretendard, sans-serif',
-                fontStyle: 'normal',
-                fontWeight: 700,
-                fontSize: '48px',
-                lineHeight: '140%',
-                letterSpacing: '-0.03em',
-                color: '#FFFFFF'
-              }}
+              className="font-bold text-white text-[48px] leading-[140%] tracking-[-0.03em] whitespace-pre-line flex flex-col items-center justify-center font-[Pretendard]"
             >
               {messageContent[1].text.join("\n")}
             </div>
@@ -101,16 +94,7 @@ export default function Message() {
         >
           <div className="text-center max-w-4xl">
             <div
-              className="font-bold text-white text-[48px] leading-[140%] tracking-[-0.03em] whitespace-pre-line flex flex-col items-center justify-center"
-              style={{
-                fontFamily: 'Pretendard, sans-serif',
-                fontStyle: 'normal',
-                fontWeight: 700,
-                fontSize: '48px',
-                lineHeight: '140%',
-                letterSpacing: '-0.03em',
-                color: '#FFFFFF'
-              }}
+              className="font-semibold text-white text-[32px] leading-[140%] tracking-[-0.96px] whitespace-pre-line flex flex-col items-center justify-center font-[Pretendard]"
             >
               {messageContent[2].text.join("\n")}
             </div>
