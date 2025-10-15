@@ -24,7 +24,7 @@ function AboutFirst() {
 
 
   return (
-    <section ref={sectionRef} id="about" className="relative w-full" style={{ backgroundColor: 'var(--blingco-bg-dark)' }}>
+    <section ref={sectionRef} id="about" className="relative w-full bg-[var(--blingco-black)]">
       <div className="flex flex-col gap-[165px] items-center pt-[127px] pb-[165px] px-0 w-full">
         {/* Heading */}
         <div
@@ -73,7 +73,7 @@ function AboutSecond() {
         className="relative w-full flex flex-col items-center gap-[100px] pt-[100px] pb-0 px-0 bg-cover bg-center bg-no-repeat" 
         style={{ 
           backgroundImage: 'url(/about2_bg.png)',
-          backgroundColor: 'var(--blingco-bg-dark)'
+          backgroundColor: 'var(--blingco-black)'
         }}
       >
         {/* Heading */}

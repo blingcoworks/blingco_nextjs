@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+  --font-pretendard: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-aggravo: 'Aggravo', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+
 @font-face {
     font-family: 'Pretendard';
     src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Thin.woff') format('woff');
@@ -101,10 +106,10 @@
   --button-secondary: #DFECC6;
   
   /* Bling.co Brand Colors */
-  --blingco-black: #000000;
-  --blingco-bg-dark: #0C0C0C;
+  --blingco-black: #0C0C0C;
   --blingco-white: #FFFFFF;
   --blingco-green: #95FF8D;
+  --blingco-purple: #9747FF;
   --blingco-blue: #1F41FF;
   --blingco-gray: #676767;
   --blingco-light-gray: #BEBEBE;

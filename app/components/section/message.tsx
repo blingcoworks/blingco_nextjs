@@ -77,7 +77,7 @@ export default function Message() {
         >
           <div className="text-center max-w-4xl">
             <div
-              className="font-bold text-white text-[48px] leading-[140%] tracking-[-0.03em] whitespace-pre-line flex flex-col items-center justify-center font-[Pretendard]"
+              className="font-bold text-white text-[48px] leading-[140%] tracking-[-0.03em] whitespace-pre-line flex flex-col items-center justify-center font-pretendard"
             >
               {messageContent[1].text.join("\n")}
             </div>
@@ -94,7 +94,7 @@ export default function Message() {
         >
           <div className="text-center max-w-4xl">
             <div
-              className="font-semibold text-white text-[32px] leading-[140%] tracking-[-0.96px] whitespace-pre-line flex flex-col items-center justify-center font-[Pretendard]"
+              className="font-semibold text-white text-[32px] leading-[140%] tracking-[-0.96px] whitespace-pre-line flex flex-col items-center justify-center font-pretendard"
             >
               {messageContent[2].text.join("\n")}
             </div>
