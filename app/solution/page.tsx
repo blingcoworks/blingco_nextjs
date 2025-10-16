@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Subtitle from "../components/common/Subtitle";
 import StepSection from "../components/common/StepSection";
 
 export default function SolutionPage() {
@@ -39,25 +38,50 @@ export default function SolutionPage() {
               priority
             />
           </div>
+        </div>
+      </section>
 
-          {/* Subtitle */}
-          <Subtitle size="small">
-            솔루션 과정 단계 소개 페이지 예시 문장입니다.
-          </Subtitle>
+      {/* Define Craft Launch Section */}
+      <section className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[749px] bg-[#0C0C0C] flex items-center justify-center">
+        <div className="relative w-full flex flex-col justify-center items-center gap-8 sm:gap-12 md:gap-16 lg:gap-24">
+          {/* DEFINE - 왼쪽 오프셋 */}
+          <div className="relative w-full flex justify-center">
+            <div className="relative" style={{ marginLeft: `-25%` }}>
+              <h2 className="font-aggravo font-bold text-[40px] sm:text-[60px] md:text-[80px] lg:text-[100px] leading-[31px] text-center text-white whitespace-nowrap">
+                DEFINE
+              </h2>
+            </div>
+          </div>
+          
+          {/* CRAFT - 중앙 */}
+          <div className="relative w-full flex justify-center">
+            <h2 className="font-aggravo font-bold text-[40px] sm:text-[60px] md:text-[80px] lg:text-[100px] leading-[31px] text-center text-white whitespace-nowrap">
+              CRAFT
+            </h2>
+          </div>
+          
+          {/* LAUNCH - 오른쪽 오프셋 */}
+          <div className="relative w-full flex justify-center">
+            <div className="relative" style={{ marginRight: `-30%` }}>
+              <h2 className="font-aggravo font-bold text-[40px] sm:text-[60px] md:text-[80px] lg:text-[100px] leading-[31px] text-center text-white whitespace-nowrap">
+                LAUNCH
+              </h2>
+            </div>
+          </div>
         </div>
       </section>
 
       <StepSection
         stepNumber="Step 01"
         title={{
-          primary: "Custom",
-          secondary: "development"
+          primary: "AI 기반 콘텐츠",
+          secondary: "분석을 통한 기획"
         }}
-        subtitle="전문 디자이너 맞춤 개발"
-        description={{
-          primary: "전문 콘텐츠, 패션 디자이너가 크리에이터님의 콘텐츠를",
-          secondary: "분석하여 고품질의 패션 굿즈를 개발합니다."
-        }}
+        description={[
+          "AI를 통한 콘텐츠 분석",
+          "미팅",
+          "기획"
+        ]}
         imageSrc="/solution/step01.svg"
         imageAlt="Step 01 illustration"
         layout="left"
@@ -66,14 +90,15 @@ export default function SolutionPage() {
       <StepSection
         stepNumber="Step 02"
         title={{
-          primary: "Manufacturing",
-          secondary: "network"
+          primary: "전문 패션 프로듀싱 팀",
+          secondary: "고부가가치 패션굿즈 개발"
         }}
-        subtitle="패션 제조 네트워크"
-        description={{
-          primary: "국내 제휴된 의류,주얼리 생산 공장을 통한 생산으로",
-          secondary: "제작 퀄리티와 속도를 모두 책임집니다."
-        }}
+        description={[
+          "전문 페션 디자이너",
+          "콘텐츠 디자이너",
+          "100개 이상의 패션 생산 전문 업체",
+          "샘플 생산 확인 컨펌"
+        ]}
         imageSrc="/solution/step02.svg"
         imageAlt="Step 02 illustration"
         layout="right"
@@ -82,14 +107,14 @@ export default function SolutionPage() {
       <StepSection
         stepNumber="Step 03"
         title={{
-          primary: "Free sample",
-          secondary: "production"
+          primary: "팬덤에게",
+          secondary: "판매"
         }}
-        subtitle="0원 시작, 재고 제로"
-        description={{
-          primary: "무료 패션 굿즈 샘플 제작, 선주문 크라우드 방식으로",
-          secondary: "부담없이 판매하여 재고,물류,CS 까지 전담 운영합니다."
-        }}
+        description={[
+          "컨펌 샘플을 통한 판매 콘텐츠 제작",
+          "선 판매 후 본 제품 생산",
+          "판매채널 구축"
+        ]}
         imageSrc="/solution/step03.svg"
         imageAlt="Step 03 illustration"
         layout="left"
@@ -102,10 +127,10 @@ export default function SolutionPage() {
           secondary: "revenue model"
         }}
         subtitle="프리미엄 수익 모델"
-        description={{
-          primary: "고부가가치 패션 굿즈의 높은 판매 수익과",
-          secondary: "크리에이터에게 우선적으로 돌아가는 투명한 정산 구조를 제공합니다."
-        }}
+        description={[
+          "고부가가치 패션 굿즈의 높은 판매 수익과",
+          "크리에이터에게 우선적으로 돌아가는 투명한 정산 구조를 제공합니다."
+        ]}
         imageSrc="/solution/step04.svg"
         imageAlt="Step 04 illustration"
         layout="right"

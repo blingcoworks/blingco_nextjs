@@ -4,11 +4,8 @@ interface StepContentProps {
     primary: string;
     secondary: string;
   };
-  subtitle: string;
-  description: {
-    primary: string;
-    secondary: string;
-  };
+  subtitle?: string;
+  description: string[];
   className?: string;
   align?: 'left' | 'right';
 }
@@ -40,14 +37,17 @@ export default function StepContent({
       </h2>
 
       {/* Subtitle */}
-      <h3 className="w-full text-[24px] 2xl:text-[28px] font-semibold leading-[120%] tracking-[-0.03em] uppercase text-[#DCDCDC]">
-        {subtitle}
-      </h3>
+      {subtitle && (
+        <h3 className="w-full text-[24px] 2xl:text-[28px] font-semibold leading-[120%] tracking-[-0.03em] uppercase text-[#DCDCDC]">
+          {subtitle}
+        </h3>
+      )}
 
       {/* Description */}
       <div className="w-[480px] 2xl:w-[540px] text-lg 2xl:text-xl font-medium leading-7 2xl:leading-8 tracking-[-0.03em] uppercase text-[#C4C4C4]">
-        <p>{description.primary}</p>
-        <p>{description.secondary}</p>
+        {description.map((line, index) => (
+          <p key={index} className="mb-4">{line}</p>
+        ))}
       </div>
     </div>
   );

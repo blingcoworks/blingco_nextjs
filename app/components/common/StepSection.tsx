@@ -7,11 +7,8 @@ interface StepSectionProps {
     primary: string;
     secondary: string;
   };
-  subtitle: string;
-  description: {
-    primary: string;
-    secondary: string;
-  };
+  subtitle?: string;
+  description: string[];
   imageSrc: string;
   imageAlt: string;
   layout?: 'left' | 'right'; // 'left' = 텍스트 왼쪽, 이미지 오른쪽 / 'right' = 텍스트 오른쪽, 이미지 왼쪽

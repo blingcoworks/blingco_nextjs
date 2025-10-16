@@ -20,6 +20,8 @@ export default function AboutPage() {
 
 function AboutFirst() {
   const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
 
   useEffect(() => {
     // Trigger animation on mount
@@ -29,29 +31,49 @@ function AboutFirst() {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    const updateScale = () => {
+      if (containerRef.current) {
+        const parentWidth = containerRef.current.parentElement?.offsetWidth || window.innerWidth;
+        const baseWidth = 1280;
+        const newScale = Math.min(parentWidth / baseWidth, 1);
+        setScale(newScale);
+      }
+    };
+
+    updateScale();
+    window.addEventListener('resize', updateScale);
+    return () => window.removeEventListener('resize', updateScale);
+  }, []);
+
   return (
     <section id="about" className="relative w-full bg-[var(--blingco-black)]">
-      <div className="flex flex-col gap-[148px] items-center pt-[120px] pt-30 pb-37 px-0 w-full">
+      <div className="flex flex-col gap-[0px] sm:gap-[80px] md:gap-[100px] lg:gap-[140px] items-center pt-[100px] pb-[0px] sm:pb-[100px] md:pb-[120px] lg:pb-[150px] px-4 w-full">
         {/* Heading */}
         <div
-          className={`flex flex-col gap-[46px] items-center text-center text-white w-[800px] transition-opacity duration-1000 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+          className={`flex flex-col gap-[10px] sm:gap-[30px] md:gap-[38px] lg:gap-[40px] items-center text-center text-white w-full max-w-[90%] sm:max-w-[600px] md:max-w-[700px] lg:w-[800px] transition-opacity duration-1000 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'}`}
         >
           {/* Subtitle */}
-          <div className="flex flex-col justify-center w-full opacity-[0.43] font-['Pretendard'] font-semibold text-[32.564px] leading-[40.705px] tracking-[-0.9769px]">
+          <div className="flex flex-col justify-center w-full opacity-[0.43] font-pretendard font-semibold text-[18px] sm:text-[22px] md:text-[28px] lg:text-[32.564px] leading-[1.25] lg:leading-[40.705px] tracking-[-0.03em] lg:tracking-[-0.9769px]">
             <p>크리에이터를 위한 패션 프로덕션 허브</p>
           </div>
           
           {/* Main Title */}
-          <div className="flex flex-col justify-center w-full font-['Pretendard'] font-bold text-[64px] leading-[80px] tracking-[-1.92px]">
+          <div className="flex flex-col justify-center w-full font-pretendard font-bold text-[28px] sm:text-[36px] md:text-[48px] lg:text-[64px] leading-[1.25] lg:leading-[80px] tracking-[-0.03em] lg:tracking-[-1.92px]">
             <p className="mb-0">당신만의 이야기로 만든</p>
-            <p>하나뿐인 패션이 되는 곳.</p>
+            <p className="mb-20 sm:mb-10 lg:mb-0">하나뿐인 패션이 되는 곳.</p>
           </div>
         </div>
 
         {/* Product Images Layout - Card Style */}
         <div
-          className={`relative w-[1360px] h-[650px] transition-opacity duration-[1200ms] ease-out delay-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+          ref={containerRef}
+          className={`relative transition-opacity duration-[1200ms] ease-out delay-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
           style={{
+            width: '1360px',
+            height: '650px',
+            transform: `scale(${scale})`,
+            transformOrigin: 'top center',
             perspective: '1000px'
           }}
         >
@@ -182,15 +204,15 @@ function AboutFirstLotate() {
       <div className="flex flex-col gap-[220px] items-center pt-[120px] pt-30 pb-37 px-0 w-full">
         {/* Heading */}
         <div
-          className={`flex flex-col gap-[46px] items-center text-center text-white w-[800px] transition-opacity duration-1000 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+          className={`flex flex-col gap-[20px] sm:gap-[30px] md:gap-[38px] lg:gap-[46px] items-center text-center text-white w-full max-w-[90%] sm:max-w-[600px] md:max-w-[700px] lg:w-[800px] transition-opacity duration-1000 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'}`}
         >
           {/* Subtitle */}
-          <div className="flex flex-col justify-center w-full opacity-[0.43] font-['Pretendard'] font-semibold text-[32.564px] leading-[40.705px] tracking-[-0.9769px]">
+          <div className="flex flex-col justify-center w-full opacity-[0.43] font-pretendard font-semibold text-[18px] sm:text-[22px] md:text-[28px] lg:text-[32.564px] leading-[1.25] lg:leading-[40.705px] tracking-[-0.03em] lg:tracking-[-0.9769px]">
             <p>크리에이터를 위한 패션 프로덕션 허브</p>
           </div>
           
           {/* Main Title */}
-          <div className="flex flex-col justify-center w-full font-['Pretendard'] font-bold text-[64px] leading-[80px] tracking-[-1.92px]">
+          <div className="flex flex-col justify-center w-full font-pretendard font-bold text-[28px] sm:text-[36px] md:text-[48px] lg:text-[64px] leading-[1.25] lg:leading-[80px] tracking-[-0.03em] lg:tracking-[-1.92px]">
             <p className="mb-0">당신만의 이야기로 만든</p>
             <p>하나뿐인 패션이 되는 곳.</p>
           </div>
@@ -253,12 +275,71 @@ function AboutFirstLotate() {
 
 function AboutSecond() {
   const { sectionRef, scrollProgress } = useScrollProgress();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Heading fade-in: 0 to 0.3
   const headingOpacity = Math.max(0, Math.min(1, scrollProgress / 0.3));
 
-  // All circles fade-in together: 0.3 to 0.6
+  // Desktop: All circles fade-in together: 0.3 to 0.6
   const circlesOpacity = Math.max(0, Math.min(1, (scrollProgress - 0.3) / 0.3));
+
+  // Mobile: 3단계 순차 전환 (message.tsx 방식)
+  // Circle 1: 0.3-0.5 (fade in & stay), 0.5-0.6 (fade out)
+  // Circle 2: 0.5-0.6 (fade in & stay), 0.75-0.85 (fade out)
+  // Circle 3: 0.75-0.85 (fade in & stay)
+  const getCircleOpacity = (index: number) => {
+    if (!isMobile) return 1; // Desktop: always visible (controlled by parent)
+
+    // Mobile: sequential fade
+    if (index === 0) {
+      // Circle 1: 0.3에서 나타나서 0.55에서 사라짐
+      if (scrollProgress < 0.3) return 0;
+      if (scrollProgress < 0.4) return (scrollProgress - 0.3) / 0.1; // fade in
+      if (scrollProgress < 0.55) return 1; // stay
+      if (scrollProgress < 0.65) return 1 - (scrollProgress - 0.55) / 0.1; // fade out
+      return 0;
+    } else if (index === 1) {
+      // Circle 2: 0.55에서 나타나서 0.8에서 사라짐
+      if (scrollProgress < 0.55) return 0;
+      if (scrollProgress < 0.65) return (scrollProgress - 0.55) / 0.1; // fade in
+      if (scrollProgress < 0.8) return 1; // stay
+      if (scrollProgress < 0.9) return 1 - (scrollProgress - 0.8) / 0.1; // fade out
+      return 0;
+    } else {
+      // Circle 3: 0.8에서 나타남
+      if (scrollProgress < 0.8) return 0;
+      if (scrollProgress < 0.9) return (scrollProgress - 0.8) / 0.1; // fade in
+      return 1; // stay
+    }
+  };
+
+  const circles = [
+    {
+      title: "STRATEGY",
+      subtitle: "데이터 기반의 성공 설계",
+      description: "당신의 감성과 시장의 데이터를 결합합니다.\n팬들이 열광하고 실제로 팔리는, \n실패 확률을 줄인 성공적인 브랜드를 설계합니다."
+    },
+    {
+      title: "COLLABORATION",
+      subtitle: "전문가 그룹의 공동 창작",
+      description: "당신의 콘텐츠에 패션 전문가의 감각을 더합니다.\n아이디어를 함께 나누고,\n가장 당신다운 브랜드를 공동으로 창작합니다."
+    },
+    {
+      title: "SYSTEM",
+      subtitle: "운영의 완전한 분리",
+      description: "당신은 콘텐츠와 팬에만 집중하세요. \n브랜드 기획부터 운영까지, \n가장 복잡한 과정은 블링코의 시스템이 책임집니다."
+    }
+  ];
 
   return (
     <section 
@@ -266,78 +347,117 @@ function AboutSecond() {
       className="relative w-full h-[200vh]"
     >
       <div
-        className="sticky top-0 w-full h-screen flex flex-col items-center justify-center gap-[100px] px-0 bg-cover bg-center bg-no-repeat bg-[var(--blingco-black)]" 
+        className="sticky top-0 w-full h-screen flex flex-col items-center justify-center gap-[40px] sm:gap-[60px] md:gap-[80px] lg:gap-[100px] px-4 bg-cover bg-center bg-no-repeat bg-[var(--blingco-black)]" 
         style={{ 
           backgroundImage: 'url(/about2_bg.png)'
         }}
       >
         {/* Heading */}
         <div 
-          className="flex flex-col justify-center pt-[50px] items-center text-center w-[523px] h-[132px] transition-opacity duration-300 ease-out"
+          className="flex flex-col justify-center pt-[20px] sm:pt-[30px] md:pt-[40px] lg:pt-[50px] items-center text-center w-full max-w-[90%] sm:w-auto lg:w-[523px] lg:h-[132px] transition-opacity duration-300 ease-out"
           style={{ opacity: headingOpacity }}
         >
-          <p className="mb-0 whitespace-nowrap text-white font-['Pretendard'] font-bold text-[60px] leading-[90px] tracking-[-1.8px]">BLING.CO</p>
-          <p className="whitespace-nowrap text-[var(--blingco-green)] font-['Pretendard'] font-bold text-[90px] leading-[90px] tracking-[-2.7px]">CORE VALUE</p>
+          <p className="mb-0 whitespace-nowrap text-white font-pretendard font-bold text-[32px] sm:text-[40px] md:text-[50px] lg:text-[60px] leading-[1.5] lg:leading-[90px] tracking-[-0.03em] lg:tracking-[-1.8px]">BLING.CO</p>
+          <p className="whitespace-nowrap text-[var(--blingco-green)] font-pretendard font-bold text-[48px] sm:text-[60px] md:text-[75px] lg:text-[90px] leading-[1.5] lg:leading-[90px] tracking-[-0.03em] lg:tracking-[-2.7px]">CORE VALUE</p>
         </div>
 
-        {/* Benefits circles */}
+        {/* Benefits circles - Desktop: flex-row, Mobile: absolute overlay */}
         <div 
-          className="relative w-full flex justify-center items-center transition-opacity duration-300 ease-out"
-          style={{ opacity: circlesOpacity }}
+          className="relative w-full md:flex md:flex-row md:justify-center md:items-center md:gap-0 transition-opacity duration-300 ease-out"
+          style={{ opacity: isMobile ? 1 : circlesOpacity }}
         >
-          {/* Circle 1 - STRATEGY */}
-          <div className="relative flex items-center justify-center w-[438px] h-[452px] -mr-[15px] z-[1]">
-            <div className="absolute inset-0 rounded-full border border-[var(--blingco-green)]" />
-            <div className="relative flex flex-col items-center justify-center text-center z-10 w-[320px]">
-              <h3 className="text-white text-[40px] font-['Pretendard'] font-bold leading-[30px] tracking-[-0.03em] mb-[20px]">
-                STRATEGY
-              </h3>
-              <p className="text-[#DFDFDF] text-[20px] font-['Pretendard'] font-semibold leading-[21px] tracking-[-0.03em] mb-[15px]">
-                데이터 기반의 성공 설계
-              </p>
-              <p className="text-white text-[16.417px] font-['Pretendard'] font-normal leading-[22px] tracking-[-0.03em]">
-                당신의 감성과 시장의 데이터를 결합합니다.
-                <br />팬들이 열광하고 실제로 팔리는, 
-                <br />실패 확률을 줄인 성공적인 브랜드를 설계합니다.
-              </p>
+          {/* Mobile: stacked circles at same position */}
+          {isMobile ? (
+            <div className="relative flex justify-center items-center w-full h-[300px] sm:h-[340px]">
+              {circles.map((circle, index) => (
+                <div
+                  key={index}
+                  className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 ease-out"
+                  style={{ 
+                    opacity: getCircleOpacity(index),
+                    willChange: 'opacity'
+                  }}
+                >
+                  <div className="relative flex items-center justify-center w-[280px] h-[300px] sm:w-[320px] sm:h-[340px]">
+                    <div className="absolute inset-0 rounded-full border border-[var(--blingco-green)]" />
+                    <div className="relative flex flex-col items-center justify-center text-center z-10 w-[80%]">
+                      <h3 className="text-white text-[24px] sm:text-[28px] font-pretendard font-bold leading-[30px] tracking-[-0.03em] mb-[12px] sm:mb-[15px]">
+                        {circle.title}
+                      </h3>
+                      <p className="text-[#DFDFDF] text-[14px] sm:text-[16px] font-pretendard font-semibold leading-[21px] tracking-[-0.03em] mb-[10px] sm:mb-[12px]">
+                        {circle.subtitle}
+                      </p>
+                      <p className="text-white text-[12px] sm:text-[13px] font-pretendard font-normal leading-[18px] sm:leading-[20px] tracking-[-0.03em]">
+                        {circle.description.split('\n').map((line, i) => (
+                          <span key={i}>
+                            {line}
+                            {i < circle.description.split('\n').length - 1 && <br />}
+                          </span>
+                        ))}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
-          </div>
+          ) : (
+            // Desktop: side by side circles
+            <>
+              {/* Circle 1 - STRATEGY */}
+              <div className="relative flex items-center justify-center w-[360px] h-[380px] lg:w-[438px] lg:h-[452px] -mr-[15px] z-[1]">
+                <div className="absolute inset-0 rounded-full border border-[var(--blingco-green)]" />
+                <div className="relative flex flex-col items-center justify-center text-center z-10 w-[280px] lg:w-[320px]">
+                  <h3 className="text-white text-[34px] lg:text-[40px] font-pretendard font-bold leading-[30px] tracking-[-0.03em] mb-[15px] lg:mb-[20px]">
+                    STRATEGY
+                  </h3>
+                  <p className="text-[#DFDFDF] text-[18px] lg:text-[20px] font-pretendard font-semibold leading-[21px] tracking-[-0.03em] mb-[12px] lg:mb-[15px]">
+                    데이터 기반의 성공 설계
+                  </p>
+                  <p className="text-white text-[14px] lg:text-[16.417px] font-pretendard font-normal leading-[20px] lg:leading-[22px] tracking-[-0.03em]">
+                    당신의 감성과 시장의 데이터를 결합합니다.
+                    <br />팬들이 열광하고 실제로 팔리는, 
+                    <br />실패 확률을 줄인 성공적인 브랜드를 설계합니다.
+                  </p>
+                </div>
+              </div>
 
-          {/* Circle 2 - COLLABORATION*/}
-          <div className="relative flex items-center justify-center w-[438px] h-[452px] -ml-[15px] -mr-[15px] z-10">
-            <div className="absolute inset-0 rounded-full border border-[var(--blingco-green)]" />
-            <div className="relative flex flex-col items-center justify-center text-center z-10 w-[320px]">
-              <h3 className="text-white text-[40px] font-['Pretendard'] font-bold leading-[30px] tracking-[-0.03em] mb-[20px]">
-                COLLABORATION
-              </h3>
-              <p className="text-[#DFDFDF] text-[20px] font-['Pretendard'] font-semibold leading-[21px] tracking-[-0.03em] mb-[15px]">
-                전문가 그룹의 공동 창작
-              </p>
-              <p className="text-white text-[16.417px] font-['Pretendard'] font-normal leading-[22px] tracking-[-0.03em]">
-                당신의 콘텐츠에 패션 전문가의 감각을 더합니다.
-                <br />아이디어를 함께 나누고,
-                <br />가장 당신다운 브랜드를 공동으로 창작합니다.
-              </p>
-            </div>
-          </div>
+              {/* Circle 2 - COLLABORATION*/}
+              <div className="relative flex items-center justify-center w-[360px] h-[380px] lg:w-[438px] lg:h-[452px] -ml-[15px] -mr-[15px] z-10">
+                <div className="absolute inset-0 rounded-full border border-[var(--blingco-green)]" />
+                <div className="relative flex flex-col items-center justify-center text-center z-10 w-[280px] lg:w-[320px]">
+                  <h3 className="text-white text-[34px] lg:text-[40px] font-pretendard font-bold leading-[30px] tracking-[-0.03em] mb-[15px] lg:mb-[20px]">
+                    COLLABORATION
+                  </h3>
+                  <p className="text-[#DFDFDF] text-[18px] lg:text-[20px] font-pretendard font-semibold leading-[21px] tracking-[-0.03em] mb-[12px] lg:mb-[15px]">
+                    전문가 그룹의 공동 창작
+                  </p>
+                  <p className="text-white text-[14px] lg:text-[16.417px] font-pretendard font-normal leading-[20px] lg:leading-[22px] tracking-[-0.03em]">
+                    당신의 콘텐츠에 패션 전문가의 감각을 더합니다.
+                    <br />아이디어를 함께 나누고,
+                    <br />가장 당신다운 브랜드를 공동으로 창작합니다.
+                  </p>
+                </div>
+              </div>
 
-          {/* Circle 3 - SYSTEM */}
-          <div className="relative flex items-center justify-center w-[438px] h-[452px] -ml-[15px] z-[1]">
-            <div className="absolute inset-0 rounded-full border border-[var(--blingco-green)]" />
-            <div className="relative flex flex-col items-center justify-center text-center z-10 w-[320px]">
-              <h3 className="text-white text-[40px] font-['Pretendard'] font-bold leading-[30px] tracking-[-0.03em] mb-[20px]">
-                SYSTEM
-              </h3>
-              <p className="text-[#DFDFDF] text-[20px] font-['Pretendard'] font-semibold leading-[21px] tracking-[-0.03em] mb-[15px]">
-                운영의 완전한 분리
-              </p>
-              <p className="text-white text-[16.417px] font-['Pretendard'] font-normal leading-[22px] tracking-[-0.03em]">
-                당신은 콘텐츠와 팬에만 집중하세요. 
-                <br />브랜드 기획부터 운영까지, 
-                <br />가장 복잡한 과정은 블링코의 시스템이 책임집니다.
-              </p>
-            </div>
-          </div>
+              {/* Circle 3 - SYSTEM */}
+              <div className="relative flex items-center justify-center w-[360px] h-[380px] lg:w-[438px] lg:h-[452px] -ml-[15px] z-[1]">
+                <div className="absolute inset-0 rounded-full border border-[var(--blingco-green)]" />
+                <div className="relative flex flex-col items-center justify-center text-center z-10 w-[280px] lg:w-[320px]">
+                  <h3 className="text-white text-[34px] lg:text-[40px] font-pretendard font-bold leading-[30px] tracking-[-0.03em] mb-[15px] lg:mb-[20px]">
+                    SYSTEM
+                  </h3>
+                  <p className="text-[#DFDFDF] text-[18px] lg:text-[20px] font-pretendard font-semibold leading-[21px] tracking-[-0.03em] mb-[12px] lg:mb-[15px]">
+                    운영의 완전한 분리
+                  </p>
+                  <p className="text-white text-[14px] lg:text-[16.417px] font-pretendard font-normal leading-[20px] lg:leading-[22px] tracking-[-0.03em]">
+                    당신은 콘텐츠와 팬에만 집중하세요. 
+                    <br />브랜드 기획부터 운영까지, 
+                    <br />가장 복잡한 과정은 블링코의 시스템이 책임집니다.
+                  </p>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </section>
@@ -378,14 +498,14 @@ function AboutThird() {
       className="relative w-full h-[200vh]"
     >
       <div
-        className="sticky top-0 w-full h-screen flex flex-col items-center justify-center gap-[72px] px-0" 
+        className="sticky top-0 w-full h-screen flex flex-col items-center justify-center gap-[32px] sm:gap-[48px] md:gap-[60px] lg:gap-[72px] px-4 pt-[80px] sm:pt-[80px] md:pt-[40px] lg:pt-0" 
         style={{ 
           backgroundColor: 'var(--blingco-black)'
         }}
       >
         {/* Heading */}
         <div 
-          className="flex flex-col justify-center text-center text-white w-[615px] font-['Pretendard'] font-bold text-[64px] leading-[80px] tracking-[-1.92px] transition-opacity duration-300 ease-out"
+          className="flex flex-col justify-center text-center text-white w-full max-w-[90%] sm:max-w-[500px] md:max-w-[600px] lg:w-[615px] font-pretendard font-bold text-[28px] sm:text-[36px] md:text-[48px] lg:text-[64px] leading-[1.25] lg:leading-[80px] tracking-[-0.03em] lg:tracking-[-1.92px] transition-opacity duration-300 ease-out"
           style={{ opacity: headingOpacity }}
         >
           <p className="mb-0 whitespace-nowrap">블링코와 함께라면</p>
@@ -393,20 +513,20 @@ function AboutThird() {
         </div>
 
         {/* Benefit Cards */}
-        <div className="flex flex-col gap-[22px] w-auto px-4 ">
+        <div className="flex flex-col gap-[16px] sm:gap-[18px] md:gap-[20px] lg:gap-[22px] w-full max-w-[95%] sm:max-w-full md:max-w-[800px] lg:max-w-[1000px] px-0 sm:px-4">
           {benefits.map((benefit, index) => (
             <div 
               key={index}
-              className="flex items-center justify-start rounded-[12px] pl-[20px] pr-[40px] py-[49px] h-[129px] bg-[rgba(151,71,255,0.3)] transition-opacity duration-300 ease-out"
+              className="flex flex-col sm:flex-row items-center sm:items-center justify-center sm:justify-start rounded-[8px] sm:rounded-[10px] lg:rounded-[12px] px-[8px] sm:pl-[20px] sm:pr-[40px] py-[24px] sm:py-[30px] md:py-[40px] lg:py-[49px] min-h-[100px] sm:h-auto lg:h-[129px] bg-[rgba(151,71,255,0.3)] transition-opacity duration-300 ease-out"
               style={{ opacity: getCardOpacity(index) }}
             >
             {/* Title */}
-            <div className="flex-shrink-0 text-center mr-[35px] w-[350px] text-[var(--blingco-green)] font-['Pretendard'] font-semibold text-[40px] leading-[30px] tracking-[-1.2px]">
+            <div className="flex-shrink-0 text-center mb-[12px] sm:mb-0 sm:mr-[20px] md:mr-[30px] lg:mr-[35px] w-full sm:w-[200px] md:w-[280px] lg:w-[350px] text-[var(--blingco-green)] font-pretendard font-semibold text-[24px] sm:text-[28px] md:text-[34px] lg:text-[40px] leading-[1.25] lg:leading-[30px] tracking-[-0.03em] lg:tracking-[-1.2px]">
               {benefit.title}
             </div>
             
             {/* Description */}
-            <div className="flex-1 font-['Pretendard'] font-medium text-[20px] leading-[30px] tracking-[-0.6px] text-[#B2B2B2]">
+            <div className="flex-1 font-pretendard font-medium text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] leading-[1.5] lg:leading-[30px] tracking-[-0.03em] lg:tracking-[-0.6px] text-[#B2B2B2] text-center sm:text-left">
               {benefit.description.split('\n').map((line, i) => (
                 <p key={i} className={i === 0 ? 'mb-0' : ''}>
                   {line}
@@ -436,11 +556,11 @@ function AboutFourth() {
       className="relative w-full h-[100vh] bg-[var(--blingco-black)]"
     >
       <div
-        className="sticky top-0 w-full h-screen flex flex-col items-center justify-center gap-[60px] px-0" 
+        className="sticky top-0 w-full h-screen flex flex-col items-center justify-center gap-[32px] sm:gap-[40px] md:gap-[50px] lg:gap-[60px] px-4" 
       >
         {/* Heading */}
         <div 
-          className="flex flex-col justify-center text-center text-white w-[1000px] font-aggravo font-normal text-[96px] leading-[80px] tracking-[-2.88px] transition-opacity duration-300 ease-out"
+          className="flex flex-col justify-center text-center text-white w-full max-w-[90%] md:max-w-[800px] lg:w-[1000px] font-aggravo font-normal text-[40px] md:text-[72px] lg:text-[96px] leading-[1.25] lg:leading-[80px] tracking-[-0.03em] lg:tracking-[-2.88px] transition-opacity duration-300 ease-out"
           style={{ opacity: headingOpacity }}
         >
           <p className="mb-0 whitespace-nowrap">INTERESTED?</p>
@@ -451,9 +571,9 @@ function AboutFourth() {
           className="transition-opacity duration-300 ease-out"
           style={{ opacity: ctaOpacity }}
         >
-          <button className="w-[312px] h-[70px] bg-[#95FF8D] text-[#2F2F2F] font-pretendard font-semibold text-[24px] leading-[30px] tracking-[-0.72px] rounded-[64px] hover:bg-[#95FF8D]/90 transition-colors duration-200 flex items-center justify-center gap-2">
+          <button className="w-[240px] h-[56px] sm:w-[280px] sm:h-[64px] lg:w-[312px] lg:h-[70px] bg-[#95FF8D] text-[#2F2F2F] font-pretendard font-semibold text-[18px] sm:text-[20px] lg:text-[24px] leading-[30px] tracking-[-0.03em] lg:tracking-[-0.72px] rounded-[64px] hover:bg-[#95FF8D]/90 transition-colors duration-200 flex items-center justify-center gap-2">
               <span>LET&apos;S TOGETHER</span>
-            <span className="text-[#2F2F2F] font-pretendard font-bold text-[40px] leading-[8.8px] tracking-[-1.2px]" style={{ WebkitTextStroke: '1px #000' }}>→</span>
+            <span className="text-[#2F2F2F] font-pretendard font-bold text-[28px] sm:text-[34px] lg:text-[40px] leading-[8.8px] tracking-[-0.03em] lg:tracking-[-1.2px]" style={{ WebkitTextStroke: '1px #000' }}>→</span>
           </button>
         </div>
       </div>
