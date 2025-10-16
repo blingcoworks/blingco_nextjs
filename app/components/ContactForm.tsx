@@ -175,7 +175,7 @@ export default function ContactForm() {
             id="content"
             rows={1}
             className="w-full bg-transparent text-white text-[16px] font-normal leading-[1.4] border-0 border-b border-white/50 focus:border-[#95FF8D] focus:outline-none pb-2 transition-all resize-none placeholder:text-white/50 overflow-y-auto"
-            placeholder="원하시는 디자인이나 상품에 대해 자세히 설명해 주세요."
+            placeholder="디자인이나 상품에 대해 자세히 설명해 주세요."
             onInput={(e) => {
               const target = e.target as HTMLTextAreaElement
               target.style.height = 'auto'

@@ -11,10 +11,9 @@ export default function InsightCard({ card, onClick }: InsightCardProps) {
 
   if (isPlaceholder) {
     return (
-      <div 
-        className="flex items-center justify-center cursor-pointer"
+      <div
+        className="flex items-center justify-center cursor-pointer w-[90vw] max-w-[387px] md:w-[387px]"
         style={{
-          width: '387px',
           height: '410px',
           background: '#272727',
           borderRadius: '12px'
@@ -34,20 +33,19 @@ export default function InsightCard({ card, onClick }: InsightCardProps) {
   }
 
   return (
-    <div 
-      className="relative overflow-hidden cursor-pointer"
+    <div
+      className="relative overflow-hidden cursor-pointer w-[90vw] max-w-[385px] md:w-[385px]"
       style={{
-        width: '385px',
         height: '410px',
         borderRadius: '12px'
       }}
       onClick={onClick}
     >
-      <Image 
+      <Image
         src={card.imageSrc}
         alt={card.imageAlt}
         fill
-        className="object-cover"
+        className="object-cover object-center"
         style={{ zIndex: 0 }}
       />
       <div 

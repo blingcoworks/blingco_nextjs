@@ -33,27 +33,6 @@ export const mockInsightData: InsightCard[] = [
     imageAlt: 'Chloe',
     hasAttribution: true,
     attributionText: 'Unsplash'
-  },
-  {
-    id: '4',
-    name: 'Coming Soon',
-    category: 'Other',
-    imageSrc: '',
-    imageAlt: '',
-  },
-  {
-    id: '5',
-    name: 'Coming Soon',
-    category: 'Other',
-    imageSrc: '',
-    imageAlt: '',
-  },
-  {
-    id: '6',
-    name: 'Coming Soon',
-    category: 'Other',
-    imageSrc: '',
-    imageAlt: '',
   }
 ];
 

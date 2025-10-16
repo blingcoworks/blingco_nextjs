@@ -20,23 +20,21 @@ export default function InsightPage() {
     <div className="bg-[#0c0c0c] min-h-screen">
       {/* Main Container */}
       <section
-        className="relative mx-auto flex flex-col items-center"
+        className="relative mx-auto flex flex-col items-center px-4 md:px-0"
         style={{
-          paddingTop: '90px',
+          paddingTop: '120px',
           paddingRight: '0px',
-          paddingBottom: '60px',
+          paddingBottom: '40px',
           paddingLeft: '0px',
-          gap: '60px',
+          gap: '40px',
           width: '1280px',
           maxWidth: '100%'
         }}
       >
         {/* Insight Logo */}
         <div 
-          className="relative"
+          className="relative w-[200px] md:w-[282.23px] h-auto"
           style={{
-            width: '282.23px',
-            height: '92px',
             flex: 'none',
             order: 0,
             flexGrow: 0
@@ -66,25 +64,20 @@ export default function InsightPage() {
 
         {/* Cards Grid Container */}
         <div
-          className="relative"
+          className="relative w-full max-w-[1189px] flex flex-col items-center"
           style={{
-            width: '1189px',
-            maxWidth: '100%',
             flex: 'none',
             order: 3,
             flexGrow: 0
           }}
         >
           {/* Top Row */}
-          <div 
-            className={`flex mb-[14px] ${filteredData.slice(0, 3).length <= 3 ? 'justify-center' : 'justify-between'}`}
-            style={{
-              gap: '30.5px'
-            }}
+          <div
+            className={`flex flex-col md:flex-row mb-[14px] gap-4 md:gap-[30.5px] items-center ${filteredData.slice(0, 3).length <= 3 ? 'justify-center' : 'justify-between'}`}
           >
             {filteredData.slice(0, 3).map((card) => (
-              <InsightCard 
-                key={card.id} 
+              <InsightCard
+                key={card.id}
                 card={card}
                 onClick={() => console.log('Card clicked:', card.id)}
               />
@@ -92,15 +85,15 @@ export default function InsightPage() {
           </div>
 
           {/* Bottom Row */}
-          <div 
-            className={`flex ${filteredData.slice(3, 6).length > 0 ? (filteredData.slice(3, 6).length <= 3 ? 'justify-center' : 'justify-between') : 'justify-center'}`}
+          <div
+            className={`flex flex-col md:flex-row items-center ${filteredData.slice(3, 6).length > 0 ? (filteredData.slice(3, 6).length <= 3 ? 'justify-center' : 'justify-between') : 'justify-center'}`}
             style={{
               gap: '30.5px'
             }}
           >
             {filteredData.slice(3, 6).map((card) => (
-              <InsightCard 
-                key={card.id} 
+              <InsightCard
+                key={card.id}
                 card={card}
                 onClick={() => console.log('Card clicked:', card.id)}
               />

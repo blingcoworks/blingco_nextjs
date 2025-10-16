@@ -1,6 +1,27 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useRef, useState } from 'react';
 
 export default function Hero() {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [scale, setScale] = useState(1);
+
+    useEffect(() => {
+        const updateScale = () => {
+            if (containerRef.current) {
+                const parentWidth = containerRef.current.parentElement?.offsetWidth || window.innerWidth;
+                const baseWidth = 800;
+                const newScale = Math.min(parentWidth / baseWidth, 1);
+                setScale(newScale);
+            }
+        };
+
+        updateScale();
+        window.addEventListener('resize', updateScale);
+        return () => window.removeEventListener('resize', updateScale);
+    }, []);
+
     return (
         <section className="hero-container">
             {/* Fixed background image */}
@@ -18,20 +39,28 @@ export default function Hero() {
             
             {/* Content overlay */}
             <div className="hero-content">
-                <div className="flex flex-col items-center gap-12">
-                    <h1 className="text-center">
-                        <Image 
-                            src="/blingco_logo.svg"
-                            alt="Blingco"
-                            width={788}
-                            height={131}
-                            priority
-                            className="w-full max-w-[788px] h-auto"
-                        />
-                    </h1>
-                    <p className="text-white text-[24px] font-semibold leading-[1.4] text-center tracking-[-0.72px] max-w-[640px]">
-                        Fashion goods production solution for creators
-                    </p>
+                <div 
+                    ref={containerRef}
+                    style={{
+                        transform: `scale(${scale})`,
+                        transformOrigin: 'center center',
+                    }}
+                >
+                    <div className="flex flex-col items-center gap-12">
+                        <h1 className="text-center">
+                            <Image 
+                                src="/blingco_logo.svg"
+                                alt="Blingco"
+                                width={788}
+                                height={131}
+                                priority
+                                className="w-[788px] h-auto"
+                            />
+                        </h1>
+                        <p className="text-white text-[24px] font-semibold leading-[1.4] text-center tracking-[-0.72px] w-[640px]">
+                            Fashion goods production solution for creators
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>

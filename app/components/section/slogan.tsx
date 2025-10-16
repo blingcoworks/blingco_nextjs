@@ -27,9 +27,9 @@ export default function Slogan() {
   }
 
   // Figma 디자인 스타일 (Tailwind 클래스)
-  const baseClassName = "whitespace-nowrap will-change-transform text-[40px] md:text-[72px] lg:text-[96px] 2xl:text-[120px] font-aggravo font-[550] leading-[120%] tracking-[-2.88px] text-center";
-  const weAreClassName = "text-[26px] md:text-[51px] lg:text-[64px] 2xl:text-[80px] font-aggravo font-[550] leading-[120%] tracking-[-1.92px] text-center text-[#EEE]";
-  const fashionClassName = "text-[36px] md:text-[72px] lg:text-[90px] 2xl:text-[120px] font-aggravo font-[550] leading-[120%] tracking-[-2.7px] text-center text-[#9747FF]";
+  const baseClassName = "whitespace-nowrap will-change-transform text-[32px] md:text-[72px] lg:text-[96px] 2xl:text-[120px] font-aggravo font-[550] leading-[120%] tracking-[-2.88px] text-center";
+  const weAreClassName = "text-[20px] md:text-[51px] lg:text-[64px] 2xl:text-[80px] font-aggravo font-[550] leading-[120%] tracking-[-1.92px] text-center text-[#EEE]";
+  const fashionClassName = "text-[28px] md:text-[72px] lg:text-[90px] 2xl:text-[120px] font-aggravo font-[550] leading-[120%] tracking-[-2.7px] text-center text-[#9747FF]";
   
   // 중앙에서 오프셋 값 (%)
   const OFFSET_PERCENTAGE = 25;
