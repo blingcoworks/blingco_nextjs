@@ -24,16 +24,17 @@ export default function Hero() {
 
     return (
         <section className="hero-container">
-            {/* Fixed background image */}
+            {/* Fixed background video */}
             <div className="hero-fixed-image">
-                <Image 
-                    src="/main_visual_img.png"
-                    alt="Hero background"
-                    fill
-                    priority
-                    className="object-cover"
-                    quality={100}
-                />
+                <video 
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover"
+                >
+                    <source src="/hero.mp4" type="video/mp4" />
+                </video>
                 <div className="hero-overlay" />
             </div>
             

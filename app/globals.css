@@ -1023,3 +1023,40 @@ html {
   display: none;  /* Chrome, Safari and Opera */
 }
 
+/* Card Rotation Animations */
+@keyframes cardRotateLeft {
+  0% {
+    transform: rotateY(-25deg) translateX(-60px) translateZ(-100px);
+  }
+  50% {
+    transform: rotateY(-45deg) translateX(-80px) translateZ(-150px) scale(0.9);
+  }
+  100% {
+    transform: rotateY(-25deg) translateX(-60px) translateZ(-100px);
+  }
+}
+
+@keyframes cardRotateCenter {
+  0% {
+    transform: translateZ(50px);
+  }
+  50% {
+    transform: translateZ(100px) scale(0.95);
+  }
+  100% {
+    transform: translateZ(50px);
+  }
+}
+
+@keyframes cardRotateRight {
+  0% {
+    transform: rotateY(25deg) translateX(60px) translateZ(-100px);
+  }
+  50% {
+    transform: rotateY(45deg) translateX(80px) translateZ(-150px) scale(0.9);
+  }
+  100% {
+    transform: rotateY(25deg) translateX(60px) translateZ(-100px);
+  }
+}
+
