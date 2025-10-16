@@ -135,6 +135,7 @@ function AboutFirst() {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function AboutFirstLotate() {
   const [isVisible, setIsVisible] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0); // 현재 보이는 첫 번째 이미지의 인덱스

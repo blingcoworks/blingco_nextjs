@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import StepContent from "./StepContent";
 
@@ -8,6 +11,7 @@ interface StepSectionProps {
     secondary: string;
   };
   subtitle?: string;
+  descriptionText?: string[]; // 설명 텍스트 배열 (선택적, 모든 Step에서 사용 가능)
   description: string[];
   imageSrc: string;
   imageAlt: string;
@@ -18,12 +22,42 @@ export default function StepSection({
   stepNumber,
   title,
   subtitle,
+  descriptionText,
   description,
   imageSrc,
   imageAlt,
   layout = 'left'
 }: StepSectionProps) {
   const isLeftLayout = layout === 'left';
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      {
+        threshold: 0.2, // 20% 보일 때 트리거
+        rootMargin: "0px"
+      }
+    );
+
+    const currentRef = sectionRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, []);
   
   // return (
   //   <section className="relative min-h-screen flex items-center overflow-hidden px-4 sm:px-8 lg:px-16 xl:px-32 bg-[var(--blingco-black)]">
@@ -52,11 +86,19 @@ export default function StepSection({
 
   // 중앙 정렬 코드
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section 
+      ref={sectionRef}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+    >
       {/* Container with max-width */}
       <div className="relative w-full max-w-[1280px] 2xl:max-w-[1600px] mx-auto flex items-center justify-between px-4 2xl:px-20">
         {/* Image */}
-        <div className={`${isLeftLayout ? 'order-2' : 'order-1'} w-1/2 flex items-center justify-center z-0`}>
+        <div 
+          className={`${isLeftLayout ? 'order-2' : 'order-1'} w-1/2 flex items-center justify-center z-0 transition-all duration-[800ms] ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+          style={{ transitionDelay: '200ms' }}
+        >
           <Image 
             src={imageSrc}
             alt={imageAlt}
@@ -67,11 +109,16 @@ export default function StepSection({
         </div>
 
         {/* Text Content */}
-        <div className={`${isLeftLayout ? 'order-1 mr-auto' : 'order-2 ml-auto'} w-1/2 flex items-center justify-center z-10`}>
+        <div 
+          className={`${isLeftLayout ? 'order-1 mr-auto' : 'order-2 ml-auto'} w-1/2 flex items-center justify-center z-10 transition-all duration-[800ms] ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <StepContent
             stepNumber={stepNumber}
             title={title}
             subtitle={subtitle}
+            descriptionText={descriptionText}
             description={description}
             align={isLeftLayout ? 'left' : 'right'}
             className="w-full max-w-[500px] 2xl:max-w-[600px]"
