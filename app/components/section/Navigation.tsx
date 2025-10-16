@@ -69,7 +69,7 @@ export default function Navigation() {
         <Link href="/insight" className={navLinkClass}>
           Insight
         </Link>
-        <Link href="/#contact" className={navLinkClass}>
+        <Link href="/contact" className={navLinkClass}>
           Contact
         </Link>
       </div>
