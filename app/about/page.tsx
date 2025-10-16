@@ -3,10 +3,11 @@
 import { useState, useEffect } from 'react';
 import { useScrollProgress } from '@/app/hooks/useScrollProgress';
 import MarqueeText from '../components/MarqueeText';
+import Image from 'next/image';
 
 export default function AboutPage() {
   return (
-    <div className="bg-[#0c0c0c]">
+    <div className="bg-[var(--blingco-black)]">
       <AboutFirst />
       <MarqueeText />
       <AboutSecond />
@@ -28,26 +29,82 @@ function AboutFirst() {
 
   return (
     <section id="about" className="relative w-full bg-[var(--blingco-black)]">
-      <div className="flex flex-col gap-[165px] items-center pt-[127px] pb-[165px] px-0 w-full">
+      <div className="flex flex-col gap-[148px] items-center pt-[120px] pt-30 pb-37 px-0 w-full">
         {/* Heading */}
         <div
-          className={`flex items-center text-center text-white max-w-[562px] w-full h-[125px] font-['Pretendard'] not-italic font-bold text-[64px] leading-[80px] tracking-[-0.03em] transition-opacity duration-1000 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+          className={`flex flex-col gap-[46px] items-center text-center text-white w-[800px] transition-opacity duration-1000 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'}`}
         >
-          <div className="flex flex-col w-full">
-            <p className="mb-0 whitespace-nowrap">당신만의 이야기로 만든</p>
-            <p className="whitespace-nowrap">하나뿐인 패션 브랜드</p>
+          {/* Subtitle */}
+          <div className="flex flex-col justify-center w-full opacity-[0.43] font-['Pretendard'] font-semibold text-[32.564px] leading-[40.705px] tracking-[-0.9769px]">
+            <p>크리에이터를 위한 패션 프로덕션 허브</p>
+          </div>
+          
+          {/* Main Title */}
+          <div className="flex flex-col justify-center w-full font-['Pretendard'] font-bold text-[64px] leading-[80px] tracking-[-1.92px]">
+            <p className="mb-0">당신만의 이야기로 만든</p>
+            <p>하나뿐인 패션이 되는 곳.</p>
           </div>
         </div>
 
-        {/* Product Grid Image */}
+        {/* Product Images Layout - Card Style */}
         <div
-          className={`relative w-full max-w-[1280px] h-[801px] bg-cover bg-center transition-opacity duration-[1200ms] ease-out delay-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+          className={`relative w-[1360px] h-[650px] transition-opacity duration-[1200ms] ease-out delay-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
           style={{
-            background: 'linear-gradient(90deg, rgba(0, 0, 0, 0) 73.32%, rgba(0, 0, 0, 0.5) 107.23%), linear-gradient(270deg, rgba(0, 0, 0, 0) 73.71%, rgba(0, 0, 0, 0.5) 108.05%), url(/about_first.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
+            perspective: '1000px'
           }}
-        />
+        >
+          {/* Left panel - tilted outward */}
+          <div 
+            className="absolute left-0 top-[10.75px] w-[450px] h-[628.674px] rounded-[12px] overflow-hidden shadow-2xl"
+            style={{
+              background: 'linear-gradient(270deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%)',
+              transform: 'rotateY(-25deg) translateX(-60px) translateZ(-100px)',
+              transformOrigin: 'left center',
+              transformStyle: 'preserve-3d'
+            }}
+          >
+            <Image 
+              src="/about/image_2.png"
+              alt="Left panel"
+              fill
+              className="object-cover"
+            />
+          </div>
+
+          {/* Center panel - forward */}
+          <div 
+            className="absolute left-[401.657px] top-0 w-[556.596px] h-[650.174px] rounded-[12px] overflow-hidden shadow-2xl z-10"
+            style={{
+              transform: 'translateZ(50px)',
+              transformStyle: 'preserve-3d'
+            }}
+          >
+            <Image 
+              src="/about/image_1.png"
+              alt="Center panel"
+              fill
+              className="object-cover"
+            />
+          </div>
+
+          {/* Right panel - tilted outward */}
+          <div 
+            className="absolute right-0 top-[10.75px] w-[450px] h-[628.674px] rounded-[12px] overflow-hidden shadow-2xl"
+            style={{
+              background: 'linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%)',
+              transform: 'rotateY(25deg) translateX(60px) translateZ(-100px)',
+              transformOrigin: 'right center',
+              transformStyle: 'preserve-3d'
+            }}
+          >
+            <Image 
+              src="/about/image_3.png"
+              alt="Right panel"
+              fill
+              className="object-cover"
+            />
+          </div>
+        </div>
       </div>
     </section>
   );
