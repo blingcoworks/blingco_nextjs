@@ -166,7 +166,7 @@ export default function ContactForm() {
         </div>
 
         {/* Content Field */}
-        <div className="space-y-[18px]" style={{ width: '550.01px' }}>
+        <div className="space-y-[18px] w-full max-w-[550px]">
           <label htmlFor="content" className="block text-white text-[20px] font-normal leading-[0.22]" style={{ fontFamily: 'Pretendard, sans-serif', letterSpacing: '-0.03em' }}>
             내용<span className="text-[#95FF8D]">* </span>(원하는 디자인, 상품 등)
           </label>
@@ -247,7 +247,6 @@ export default function ContactForm() {
 
           {/* 안내 텍스트 */}
           <div className="text-center text-[#b1b1b1] text-[18px] leading- tracking-[-0.54px] mb-0" style={{ fontFamily: 'Pretendard, sans-serif' }}>
-            <p className="mb-0">문의 내용은 blingcoworks@gmail.com으로 전송됩니다.</p>
             <p className="mb-0">영업일 기준 1-2일 이내에 답변드리겠습니다.</p>
           </div>
         </div>

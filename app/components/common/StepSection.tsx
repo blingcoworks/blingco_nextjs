@@ -59,7 +59,7 @@ export default function StepSection({
       {/* Container with max-width */}
       <div className="relative w-full max-w-[1280px] 2xl:max-w-[1600px] mx-auto flex items-center justify-between px-4 2xl:px-20">
         {/* Image */}
-        <div className={`${isLeftLayout ? 'order-2' : 'order-1'} w-1/2 flex items-center justify-center`}>
+        <div className={`${isLeftLayout ? 'order-2' : 'order-1'} w-1/2 flex items-center justify-center z-0`}>
           <Image 
             src={imageSrc}
             alt={imageAlt}
@@ -70,7 +70,7 @@ export default function StepSection({
         </div>
 
         {/* Text Content */}
-        <div className={`${isLeftLayout ? 'order-1 mr-auto' : 'order-2 ml-auto'} w-1/2 flex items-center justify-center`}>
+        <div className={`${isLeftLayout ? 'order-1 mr-auto' : 'order-2 ml-auto'} w-1/2 flex items-center justify-center z-10`}>
           <StepContent
             stepNumber={stepNumber}
             title={title}

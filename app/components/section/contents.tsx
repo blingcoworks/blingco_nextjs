@@ -29,11 +29,13 @@ export default function Contents() {
         {/* Scaled container based on Figma design (1280x720) */}
         <div 
           ref={containerRef}
-          className="relative"
+          className="absolute"
           style={{
             width: '1280px',
             height: '720px',
-            transform: `scale(${scale})`,
+            left: '50%',
+            top: '50%',
+            transform: `translate(-50%, -50%) scale(${scale})`,
             transformOrigin: 'center center',
           }}
         >

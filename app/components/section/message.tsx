@@ -75,9 +75,10 @@ export default function Message() {
             willChange: "opacity",
           }}
         >
-          <div className="text-center max-w-4xl">
+          <div className="text-center max-w-4xl 2xl:max-w-6xl">
+            {/* standard font size: 48px, xl: 56px */}
             <div
-              className="font-bold text-white text-[48px] leading-[140%] tracking-[-0.03em] whitespace-pre-line flex flex-col items-center justify-center font-pretendard"
+              className="font-bold text-white text-[28px] md:text-[36px] lg:text-[48px] 2xl:text-[64px] leading-[140%] tracking-[-0.03em] whitespace-pre-line flex flex-col items-center justify-center font-pretendard"
             >
               {messageContent[1].text.join("\n")}
             </div>
@@ -92,9 +93,10 @@ export default function Message() {
             willChange: "opacity",
           }}
         >
-          <div className="text-center max-w-4xl">
+          <div className="text-center max-w-4xl 2xl:max-w-6xl">
+            {/* standard font size: 32px, xl: 36px */}
             <div
-              className="font-semibold text-white text-[32px] leading-[140%] tracking-[-0.96px] whitespace-pre-line flex flex-col items-center justify-center font-pretendard"
+              className="font-semibold text-white text-[20px] md:text-[24px] lg:text-[32px] 2xl:text-[40px] leading-[140%] tracking-[-0.96px] whitespace-pre-line flex flex-col items-center justify-center font-pretendard"
             >
               {messageContent[2].text.join("\n")}
             </div>
