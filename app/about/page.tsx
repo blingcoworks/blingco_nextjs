@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useScrollProgress } from '@/app/hooks/useScrollProgress';
 import MarqueeText from '../components/MarqueeText';
 import Image from 'next/image';
+import Link from 'next/link';
 import { startTransition } from 'react';
 
 export default function AboutPage() {
@@ -571,10 +572,10 @@ function AboutFourth() {
           className="transition-opacity duration-300 ease-out"
           style={{ opacity: ctaOpacity }}
         >
-          <button className="w-[240px] h-[56px] sm:w-[280px] sm:h-[64px] lg:w-[312px] lg:h-[70px] bg-[#95FF8D] text-[#2F2F2F] font-pretendard font-semibold text-[18px] sm:text-[20px] lg:text-[24px] leading-[30px] tracking-[-0.03em] lg:tracking-[-0.72px] rounded-[64px] hover:bg-[#95FF8D]/90 transition-colors duration-200 flex items-center justify-center gap-2">
-              <span>LET&apos;S TOGETHER</span>
+          <Link href="/contact" className="w-[240px] h-[56px] sm:w-[280px] sm:h-[64px] lg:w-[312px] lg:h-[70px] bg-[#95FF8D] text-[#2F2F2F] font-pretendard font-semibold text-[18px] sm:text-[20px] lg:text-[24px] leading-[30px] tracking-[-0.03em] lg:tracking-[-0.72px] rounded-[64px] hover:bg-[#95FF8D]/90 transition-colors duration-200 flex items-center justify-center gap-2">
+            <span>LET&apos;S TOGETHER</span>
             <span className="text-[#2F2F2F] font-pretendard font-bold text-[28px] sm:text-[34px] lg:text-[40px] leading-[8.8px] tracking-[-0.03em] lg:tracking-[-1.2px]" style={{ WebkitTextStroke: '1px #000' }}>→</span>
-          </button>
+          </Link>
         </div>
       </div>
     </section>
