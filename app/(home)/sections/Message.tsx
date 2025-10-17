@@ -25,7 +25,7 @@ export default function Message() {
     1: {
       text: [
         "우리는 당신의 콘텐츠를 통해,",
-        "브랜드가 세상에 빛나는 순간을 만듭니다."
+        "가장 당신다운 브랜드를 만듭니다."
       ],
       backgroundImage: "/message_bg_1.png"
     },

@@ -106,7 +106,7 @@ ${validatedData.content}
     console.log('Attempting to send email via Resend')
     const { data, error } = await resend.emails.send({
       from: 'onboarding@resend.dev', // Using Resend's default domain
-      to: 'blingcoworks@gmail.com', // Must match the email registered with Resend
+      to: 'contact@blingco.kr', // Must match the email registered with Resend
       subject: `[Blingco 문의] ${validatedData.name}님의 새로운 문의`,
       html: emailHtml,
       text: emailText

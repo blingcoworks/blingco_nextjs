@@ -19,7 +19,7 @@ export default function Footer() {
             T. +82.10.2602.8219
           </p>
           <p className="text-white/60 text-[14px] md:text-[16px] leading-[1.39] tracking-[-0.16px]">
-            E. young@blingco.kr
+            E. contact@blingco.kr
           </p>
           <p className="text-white/60 text-[14px] md:text-[16px] leading-[1.39] tracking-[-0.16px]">
             A. 서울특별시 금천구 범안로 15길 22-5

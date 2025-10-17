@@ -17,7 +17,7 @@ export default function Contact() {
       {/* 메인 컨텐츠 */}
       <div className="relative px-4 md:px-[74px] pt-[156px]">
         {/* Contact Us SVG 로고 */}
-        <div className="mb-6 md:mb-[44px]">
+        <div className="mb-6 md:mb-[44px] relative">
           <Image 
             src="/Contact Us.svg"
             alt="Contact Us"
@@ -25,6 +25,20 @@ export default function Contact() {
             height={80}
             className="w-auto h-auto max-w-[300px] md:max-w-none"
           />
+          
+          {/* 문의하기 버튼 - 절대 위치 */}
+          <Link 
+            href="/contact" 
+            className="hidden md:inline-flex absolute items-center gap-2 px-6 py-3 bg-[var(--blingco-green)] text-[#2f2f2f] text-[20px] font-bold rounded-[64px] hover:bg-[#7FE076] transition-all duration-300 transform hover:scale-105"
+            style={{ 
+              fontFamily: 'Pretendard, sans-serif', 
+              letterSpacing: '-0.6px',
+              top: '155px',
+              left: '384px'
+            }}
+          >
+            문의하기 <span>→</span>
+          </Link>
         </div>
 
         {/* 블링코와 함께할 크리에이터님을 기다립니다! */}
@@ -38,10 +52,10 @@ export default function Contact() {
           <p>당신만의 패션 브랜드를 만들 수 있습니다.</p>
         </div>
 
-        {/* 문의하기 버튼 */}
+        {/* 문의하기 버튼 - 모바일용 */}
         <Link 
           href="/contact" 
-          className="inline-flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 bg-[#95FF8D] text-[#2f2f2f] text-[16px] md:text-[20px] font-bold rounded-[32px] md:rounded-[64px] hover:bg-[#7FE076] transition-all duration-300 transform hover:scale-105"
+          className="inline-flex md:hidden items-center gap-2 px-4 py-2 bg-[var(--blingco-green)] text-[#2f2f2f] text-[16px] font-bold rounded-[32px] hover:bg-[#7FE076] transition-all duration-300 transform hover:scale-105"
           style={{ fontFamily: 'Pretendard, sans-serif', letterSpacing: '-0.6px' }}
         >
           문의하기 <span>→</span>
