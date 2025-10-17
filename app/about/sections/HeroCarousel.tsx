@@ -63,6 +63,7 @@ export default function HeroCarousel() {
   const [isVisible, setIsVisible] = useState(false);
   const [rotation, setRotation] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [scale, setScale] = useState(1);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Memoize images array
@@ -74,6 +75,28 @@ export default function HeroCarousel() {
       setIsVisible(true);
     }, 100);
     return () => clearTimeout(timer);
+  }, []);
+
+  // Responsive scale calculation
+  useEffect(() => {
+    const updateScale = () => {
+      if (containerRef.current) {
+        const parentWidth = containerRef.current.parentElement?.offsetWidth || window.innerWidth;
+        const baseWidth = CAROUSEL_CONFIG.CONTAINER.WIDTH;
+        let newScale = Math.min(parentWidth / baseWidth, 1);
+        
+        // 모바일에서 추가로 축소
+        if (parentWidth < 640) {
+          newScale *= 0.9; // 모바일에서 60% 크기로 축소
+        }
+        
+        setScale(newScale);
+      }
+    };
+
+    updateScale();
+    window.addEventListener('resize', updateScale);
+    return () => window.removeEventListener('resize', updateScale);
   }, []);
 
   // Memoized rotation handler
@@ -119,9 +142,9 @@ export default function HeroCarousel() {
 
   return (
     <section id="about" className="relative w-full bg-[var(--blingco-black)]">
-      <div className="flex flex-col gap-[220px] items-center pt-[120px] pt-30 pb-37 px-0 w-full">
+      <div className="flex flex-col items-center pt-18 sm:pt-25 pb-0 sm:pb-40 lg:pb-[180px] px-0 w-full">
         {/* Heading */}
-        <div className={`${HEADING_WRAPPER_CLASSES} ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`${HEADING_WRAPPER_CLASSES} ${isVisible ? 'opacity-100' : 'opacity-0'} mb-[-100px] sm:mb-[120px] md:mb-[180px] lg:mb-[180px]`}>
           {/* Subtitle */}
           <div className={SUBTITLE_CLASSES}>
             <p>크리에이터를 위한 패션 프로덕션 허브</p>
@@ -141,7 +164,9 @@ export default function HeroCarousel() {
           style={{
             width: `${CAROUSEL_CONFIG.CONTAINER.WIDTH}px`,
             height: `${CAROUSEL_CONFIG.CONTAINER.HEIGHT}px`,
-            perspective: `${CAROUSEL_CONFIG.CONTAINER.PERSPECTIVE}px`
+            perspective: `${CAROUSEL_CONFIG.CONTAINER.PERSPECTIVE}px`,
+            transform: `scale(${scale})`,
+            transformOrigin: 'center center'
           }}
           onMouseMove={handleMouseMove}
         >
@@ -205,7 +230,7 @@ export default function HeroCarousel() {
           />          
 
           {/* Instructions */}
-          <div className="absolute bottom-[-60px] left-1/2 transform -translate-x-1/2 text-white/60 text-sm text-center">
+          <div className="absolute bottom-[-20px] sm:bottom-[-60px] left-1/2 transform -translate-x-1/2 text-white/60 text-sm text-center">
             <p>마우스를 좌우로 움직여 이미지를 회전시켜보세요</p>
           </div>
         </div>
